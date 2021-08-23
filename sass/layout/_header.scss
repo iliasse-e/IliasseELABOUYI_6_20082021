@@ -1,0 +1,12 @@
+.main_header {
+    display: flex;
+    width: 70%;
+    .banner {
+        margin: 0 20px;
+    }
+    .header-tags {
+        margin: auto;
+        color: $primary;
+        font-weight: 500;
+    }
+}

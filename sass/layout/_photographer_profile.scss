@@ -1,0 +1,35 @@
+.photographer-profile {
+    text-align: center;
+    *{
+        padding: 5px;
+        text-decoration: none;
+    };
+    &__image {
+        width: 200px;
+        border-radius: 200px;
+        height: 200px;
+        object-fit: cover;
+    }
+    &__heading {
+        font-size: 2.5em;
+        color: $secondary;
+        font-size: 400;
+        margin-bottom: -15px;
+    }
+    &__location {
+        font-size: 1.2em;
+        color: $primary;
+        font-weight: 300;
+    }
+    &__tagline {
+        font-size: 0.9em;
+    }
+    &__price {
+        font-size: 0.8em;
+        color: grey;
+    }
+    &__tags {
+        font-size: 12px;
+        font-weight: 500;
+    }
+}

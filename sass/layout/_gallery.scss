@@ -1,0 +1,9 @@
+.image {
+    img {
+        width: 300px;
+    }
+    &__heading {
+        display: flex;
+        justify-content: space-between;
+    }
+}

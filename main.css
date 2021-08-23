@@ -1,0 +1,207 @@
+/* Import */
+/* Utils */
+/*Colors*/
+/* Base */
+html {
+  font-family: "DM Sans", sans-serif;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+  margin: 50px 75px;
+  font-family: "DM Sans", sans-serif;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Components */
+.contact {
+  background-color: #901C1C;
+  color: white;
+  border-radius: 5px;
+  border-width: 0;
+  width: 25%;
+  padding: 20px 0px;
+  font-weight: 500;
+  font-size: 1em;
+}
+
+/* Pages */
+.title {
+  font-size: 2.5em;
+  position: absolute;
+  top: 50px;
+  right: 100px;
+  color: #901C1C;
+}
+
+.catalog {
+  margin-top: 50px;
+  padding: 50px 0px;
+  display: grid;
+  justify-content: space-between;
+  grid-gap: 100px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* Layout */
+.photographer-profile {
+  text-align: center;
+}
+.photographer-profile * {
+  padding: 5px;
+  text-decoration: none;
+}
+.photographer-profile__image {
+  width: 200px;
+  border-radius: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+.photographer-profile__heading {
+  font-size: 2.5em;
+  color: #D3573C;
+  font-size: 400;
+  margin-bottom: -15px;
+}
+.photographer-profile__location {
+  font-size: 1.2em;
+  color: #901C1C;
+  font-weight: 300;
+}
+.photographer-profile__tagline {
+  font-size: 0.9em;
+}
+.photographer-profile__price {
+  font-size: 0.8em;
+  color: grey;
+}
+.photographer-profile__tags {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.main_header {
+  display: flex;
+  width: 70%;
+}
+.main_header .banner {
+  margin: 0 20px;
+}
+.main_header .header-tags {
+  margin: auto;
+  color: #901C1C;
+  font-weight: 500;
+}
+
+/* for all tag lists */
+.tag-list {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+.tag-list .tag {
+  border: 0.01px solid #C4C4C4;
+  border-radius: 2.4em;
+  padding: 5px 10px;
+  margin: 0px 5px;
+  color: #901C1C;
+  font-weight: 500;
+  font-size: 0.9em;
+  transition: 500ms;
+}
+
+/* only for navigation tags */
+.nav-tag-list {
+  user-select: none;
+}
+.nav-tag-list:hover .tag:not(:hover) {
+  opacity: 0.5;
+  transition: 500ms;
+}
+.nav-tag-list .tag:hover {
+  opacity: 1;
+  border-color: #901C1C;
+}
+
+/* selected profiles*/
+.photographer-profile[tag-selected=true] {
+  display: block;
+}
+
+.photographer-profile[tag-selected=false] {
+  display: none;
+}
+
+/* selected tag */
+.tag[my-tag=true] {
+  font-weight: 800;
+  border-color: #901C1C;
+}
+.tag[my-tag=true]:hover {
+  border-color: gray;
+  color: gray;
+  transition: none;
+}
+.tag[my-tag=true]:hover::after {
+  content: " x";
+  color: rgba(255, 0, 0, 0.719);
+}
+
+.tag[my-tag=false] {
+  opacity: 0.6;
+}
+
+.image img {
+  width: 300px;
+}
+.image__heading {
+  display: flex;
+  justify-content: space-between;
+}
+
+/*# sourceMappingURL=main.css.map */
