@@ -1,41 +1,12 @@
-
+// import (photographer profil) json data
 let photographers = [];
-let medias = [];
 fetch('./JSON/photographer.json')
 .then(function (response) {
     console.log("Je suis la");
     if (response.ok) {
         response.json().then(data => {
             photographers = data["photographers"];
-
-            // import (photographer profil) json data
-            
-            fetch('./JSON/photographer.json')
-            .then(function (response) {
-                console.log("Je suis la");
-                if (response.ok) {
-                    response.json().then(data => {
-                        medias = data["media"];
-                        generateImage(0);
-                        generateImage(8);
-                        generateImage(4);
-                        generateImage(5);
-                        generateImage(7);
-                        generateImage(9);
-                        
-                        console.log(identifyPhotographer())
-                        console.log(medias);
-                        console.log(photographers[0]);
-                        
-                        generateProfile(identifyPhotographer());
-                    })
-                }
-                else { 
-                    alert("Les données utilisateurs n'ont pas été chargées")
-                }
-                console.log("Im here")
-            });
-
+          
         })
     }
     else { 
@@ -44,57 +15,33 @@ fetch('./JSON/photographer.json')
     console.log("Im here")
 });
 
+// DOM elements
 
-// identify photographer from URL
-const urlParams = window.location.search;
+setTimeout(function() {
 
-function identifyPhotographer() {
-    for (let photographer = 0; photographer < photographers.length; photographer++) {
-        if (urlParams.includes(encodeURIComponent(photographers[photographer].name))) {
-            return photographer
+console.log("where are you");
+
+// gathers available tags
+let tags = [];
+for (let photographer = 0; photographer < photographers.length; photographer++ ) {
+    for (let tag = 0; tag < photographers[photographer].tags.length; tag++) {
+        if (!tags.includes(photographers[photographer].tags[tag])) {
+            tags.push(photographers[photographer].tags[tag])
         }
     }
-}
+};
 
-// generates photographer images
-function generateImage(mediaIndex) {
+// generates nav #tags 
+tags.forEach((element) => {
+    const tag = document.createElement("li");
+    document.querySelector(".nav-tag-list").appendChild(tag);
+    const tagnode = document.createTextNode("#"+element);
+    tag.appendChild(tagnode);
+    tag.setAttribute("class", "tag");
+    tag.setAttribute("id", element);
+    }
+)
 
-    //creates HTML element
-    const container = document.createElement("section");
-    const image = document.createElement("img");
-    const heading = document.createElement("div");
-    const title = document.createElement("p");
-    const likeCounter = document.createElement("p");
-    const like = document.createElement("i");
-
-    // creates a text to attach to the HTML element
-    const imagenode = document.createTextNode(medias[mediaIndex].image);
-    const titlenode = document.createTextNode(medias[mediaIndex].title);
-    const likeCounternode = document.createTextNode(medias[mediaIndex].likes);
-
-    // joins the textNodes to HTML element
-    image.appendChild(imagenode);
-    title.appendChild(titlenode);
-    likeCounter.appendChild(likeCounternode);
-    
-    // sets the new element to the DOM
-    document.querySelector(".gallery").appendChild(container);
-    container.appendChild(image);
-    container.appendChild(heading);
-    heading.appendChild(title);
-    heading.appendChild(likeCounter);
-    heading.appendChild(like);
-
-    // attributes a class
-    container.setAttribute("class", "image");
-    image.setAttribute("src", "images/Tracy/" + medias[mediaIndex].image);
-    heading.setAttribute("class", "image__heading");
-    title.setAttribute("class", "image__heading-title");
-    likeCounter.setAttribute("class", "image__heading-like-counter");
-    like.setAttribute("class", "fas fa-heart image-like");
-}
-
-// import generate photographer profile
 function generateProfile(photographerIndex) {
 
     //creates HTML element
@@ -122,7 +69,7 @@ function generateProfile(photographerIndex) {
     price.appendChild(pricenode);
     
     // sets the new element to the DOM
-    document.querySelector(".catalog").prepend(container);
+    document.querySelector(".catalog").appendChild(container);
     container.appendChild(link);
     link.appendChild(image);
     container.appendChild(headinglink);
@@ -156,4 +103,51 @@ function generateProfile(photographerIndex) {
         tags.appendChild(tag);
         tag.setAttribute("class", "tag")
     });
+}
+
+for (let i = 0; i < photographers.length; i++ ) {
+    generateProfile(i)
+}
+
+
+function filterByTag(id) {
+
+    document.querySelectorAll(".photographer-profile").forEach((photographer) => {
+        if (!photographer.getAttribute("class").includes(id)) {
+            photographer.setAttribute("tag-selected", "false")
+        }
+        else {
+            photographer.setAttribute("tag-selected", "true")
+        }
+        console.log(id)
+    })
+}
+
+// filter profile by tag selected
+document.querySelectorAll(".nav-tag-list > .tag").forEach((element) => element.addEventListener('click', () => {filterByTag(element.id)}));
+
+// apply CSS form when tag selected
+document.querySelectorAll(".nav-tag-list > .tag").forEach((element) => element.addEventListener('click', () => {
+    document.querySelectorAll(".nav-tag-list > .tag").forEach((element) => element.setAttribute("my-tag", "false"));
+    document.getElementById(element.id).setAttribute("my-tag", "true");
+    document.querySelectorAll(".tag").forEach((photographer) => {
+        photographer.removeAttribute("onclick")
+    })
+    document.getElementById(element.id).setAttribute("onclick", "resetTagSearch()");
+}))
+
+
+
+
+}, 100);
+
+// reset tag selection
+function resetTagSearch() {
+    document.querySelectorAll(".nav-tag-list > .tag").forEach((element) => element.removeAttribute("my-tag"));
+
+    document.querySelectorAll(".nav-tag-list > .tag").forEach((element) => element.removeAttribute("onclick"));
+    
+    document.querySelectorAll(".photographer-profile").forEach((photographer) => {
+        photographer.removeAttribute("tag-selected")
+    })
 }

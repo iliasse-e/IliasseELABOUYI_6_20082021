@@ -2,10 +2,6 @@
 /* Utils */
 /*Colors*/
 /* Base */
-html {
-  font-family: "DM Sans", sans-serif;
-}
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -23,7 +19,6 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
 }
 
@@ -58,18 +53,31 @@ table {
   border-spacing: 0;
 }
 
+html {
+  font-family: "DM Sans", sans-serif;
+}
+
 /* Components */
 .contact {
+  height: 70px;
   background-color: #901C1C;
   color: white;
   border-radius: 5px;
   border-width: 0;
-  width: 25%;
+  width: 130px;
   padding: 20px 0px;
   font-weight: 500;
   font-size: 1em;
+  font-family: "DM Sans", sans-serif;
 }
 
+.sort-by, .sort-by option {
+  background-color: #901C1C;
+  color: white;
+  border-width: 0;
+  border-radius: 5px;
+  padding: 12px;
+}
 /* Pages */
 .title {
   font-size: 2.5em;
@@ -79,13 +87,28 @@ table {
   color: #901C1C;
 }
 
-.catalog {
+.catalog, .gallery {
   margin-top: 50px;
   padding: 50px 0px;
   display: grid;
   justify-content: space-between;
   grid-gap: 100px;
   grid-template-columns: 1fr 1fr 1fr;
+}
+
+.gallery {
+  grid-gap: 100px;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: start;
+  margin: 50px;
+}
+.profile-container img {
+  position: absolute;
+  left: 80%;
+  top: 28%;
 }
 
 /* Layout */
@@ -196,12 +219,22 @@ table {
   opacity: 0.6;
 }
 
+.image {
+  width: 100%;
+}
 .image img {
-  width: 300px;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 .image__heading {
-  display: flex;
-  justify-content: space-between;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 10fr 1fr 1fr;
+  color: #901C1C;
+  font-weight: 400;
+  font-size: 1.2em;
 }
 
 /*# sourceMappingURL=main.css.map */

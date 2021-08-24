@@ -1,0 +1,15 @@
+.gallery {
+    @extend .catalog;
+    grid-gap: 100px;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: start;
+    margin: 50px;
+    img {
+        position: absolute;
+        left: 80%;
+        top: 28%;
+    }
+}
