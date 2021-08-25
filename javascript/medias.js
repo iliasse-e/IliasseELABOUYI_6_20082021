@@ -1,6 +1,8 @@
 
 let photographers = [];
 let medias = [];
+
+//imports photographers
 fetch('./JSON/photographer.json')
 .then(function (response) {
     console.log("Je suis la");
@@ -8,34 +10,20 @@ fetch('./JSON/photographer.json')
         response.json().then(data => {
             photographers = data["photographers"];
 
-            // import (photographer profil) json data
+            // import medias
+            medias = data["media"];
             
-            fetch('./JSON/photographer.json')
-            .then(function (response) {
-                console.log("Je suis la");
-                if (response.ok) {
-                    response.json().then(data => {
-                        medias = data["media"];
-                        generateImage(0);
-                        generateImage(8);
-                        generateImage(4);
-                        generateImage(5);
-                        generateImage(7);
-                        generateImage(9);
-                        
-                        console.log(identifyPhotographer())
-                        console.log(medias);
-                        console.log(photographers[0]);
-                        
-                        generateProfile(identifyPhotographer());
-                    })
-                }
-                else { 
-                    alert("Les données utilisateurs n'ont pas été chargées")
-                }
-                console.log("Im here")
-            });
+            fillArray()
 
+            for (let media = 0; media < myArray.length; media++) {
+                console.log(media);
+                console.log(myArray);
+                factory(myArray,media);
+            };
+
+            generateProfile(identifyPhotographer());
+
+            console.log("Im here")
         })
     }
     else { 
@@ -44,10 +32,10 @@ fetch('./JSON/photographer.json')
     console.log("Im here")
 });
 
-
-// identify photographer from URL
+// identifies photographer from URL
 const urlParams = window.location.search;
 
+// identifies current photographer (return Int)
 function identifyPhotographer() {
     for (let photographer = 0; photographer < photographers.length; photographer++) {
         if (urlParams.includes(encodeURIComponent(photographers[photographer].name))) {
@@ -56,8 +44,44 @@ function identifyPhotographer() {
     }
 }
 
-// generates photographer images
-function generateImage(mediaIndex) {
+// gather medias of the current photographer
+let myArray = [];
+function fillArray() {
+    
+    for (let media = 0; media < medias.length; media++) {
+        if (medias[media].photographerId === getPhotographerId()) {
+            myArray.push(medias[media])
+        }
+        console.log(myArray)
+    }
+}
+
+// converts photographer's name into an id (return Int)
+function getPhotographerId() {
+    switch (photographers[identifyPhotographer()].name) {
+        case "Mimi Keel":
+            return 243;
+            break;
+        case "Rhode Dubois":
+            return 925;
+        break;
+        case "Marcel Nikolic":
+            return 195;
+        break;
+        case "Nabeel Bradford":
+            return 527;
+        break;
+        case "Tracy Galindo":
+            return 82;
+        break;
+        case "Ellie-Rose Wilkens":
+            return 930;
+        break
+    }
+}
+
+// generates all photographer medias
+function generateImage(index) {
 
     //creates HTML element
     const container = document.createElement("section");
@@ -68,9 +92,9 @@ function generateImage(mediaIndex) {
     const like = document.createElement("i");
 
     // creates a text to attach to the HTML element
-    const imagenode = document.createTextNode(medias[mediaIndex].image);
-    const titlenode = document.createTextNode(medias[mediaIndex].title);
-    const likeCounternode = document.createTextNode(medias[mediaIndex].likes);
+    const imagenode = document.createTextNode(myArray[index].image);
+    const titlenode = document.createTextNode(myArray[index].title);
+    const likeCounternode = document.createTextNode(myArray[index].likes);
 
     // joins the textNodes to HTML element
     image.appendChild(imagenode);
@@ -87,14 +111,52 @@ function generateImage(mediaIndex) {
 
     // attributes a class
     container.setAttribute("class", "image");
-    image.setAttribute("src", "images/Tracy/" + medias[mediaIndex].image);
+    image.setAttribute("src", "images/" + getPhotographerId() + "/" + myArray[index].image);
     heading.setAttribute("class", "image__heading");
     title.setAttribute("class", "image__heading-title");
     likeCounter.setAttribute("class", "image__heading-like-counter");
     like.setAttribute("class", "fas fa-heart image-like");
 }
 
-// import generate photographer profile
+// generates photographer video
+function generateVideo(index) {
+
+    //creates HTML element
+    const container = document.createElement("section");
+    const video = document.createElement("video");
+    const heading = document.createElement("div");
+    const title = document.createElement("p");
+    const likeCounter = document.createElement("p");
+    const like = document.createElement("i");
+
+    // creates a text to attach to the HTML element
+    const videonode = document.createTextNode(myArray[index].video);
+    const titlenode = document.createTextNode(myArray[index].title);
+    const likeCounternode = document.createTextNode(myArray[index].likes);
+
+    // joins the textNodes to HTML element
+    video.appendChild(videonode);
+    title.appendChild(titlenode);
+    likeCounter.appendChild(likeCounternode);
+    
+    // sets the new element to the DOM
+    document.querySelector(".gallery").appendChild(container);
+    container.appendChild(video);
+    container.appendChild(heading);
+    heading.appendChild(title);
+    heading.appendChild(likeCounter);
+    heading.appendChild(like);
+
+    // attributes a class
+    container.setAttribute("class", "video");
+    video.setAttribute("src", "images/" + getPhotographerId() + "/" + myArray[index].video);
+    heading.setAttribute("class", "video__heading");
+    title.setAttribute("class", "video__heading-title");
+    likeCounter.setAttribute("class", "video__heading-like-counter");
+    like.setAttribute("class", "fas fa-heart image-like");
+}
+
+// generates photographer profile
 function generateProfile(photographerIndex) {
 
     //creates HTML element
@@ -156,4 +218,13 @@ function generateProfile(photographerIndex) {
         tags.appendChild(tag);
         tag.setAttribute("class", "tag")
     });
+}
+
+function factory(array, index) {
+    if (array[index].hasOwnProperty("image")) {
+            return generateImage(index)
+    }
+    else if (array[index].hasOwnProperty("video")) {
+            return generateVideo(index)
+    }
 }
