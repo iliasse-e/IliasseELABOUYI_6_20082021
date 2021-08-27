@@ -96,6 +96,11 @@ html {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+label {
+  font-weight: 600;
+  margin-right: 20px;
+}
+
 .gallery {
   grid-gap: 100px;
 }
@@ -108,7 +113,7 @@ html {
 .profile-container img {
   position: absolute;
   left: 80%;
-  top: 25%;
+  top: 180px;
 }
 
 /* Layout */

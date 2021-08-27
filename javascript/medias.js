@@ -12,13 +12,11 @@ fetch('./JSON/photographer.json')
 
             // import medias
             medias = data["media"];
-            
-            fillArray()
 
-            for (let media = 0; media < myArray.length; media++) {
+            for (let media = 0; media < photographerMediasArray().length; media++) {
                 console.log(media);
-                console.log(myArray);
-                factory(myArray,media);
+                console.log(photographerMediasArray());
+                factory(photographerMediasArray(),media);
             };
 
             generateProfile(identifyPhotographer());
@@ -32,6 +30,8 @@ fetch('./JSON/photographer.json')
     console.log("Im here")
 });
 
+
+
 // identifies photographer from URL
 const urlParams = window.location.search;
 
@@ -44,16 +44,34 @@ function identifyPhotographer() {
     }
 }
 
-// gather medias of the current photographer
-let myArray = [];
-function fillArray() {
+// gather medias of the current photographer and organizes it (throught select)
+function photographerMediasArray() {
+    let myArray = [];
+
+    // get user <select> input
+    let sortBy = document.getElementById("sort-by").value;
     
+    // fill the array
     for (let media = 0; media < medias.length; media++) {
         if (medias[media].photographerId === getPhotographerId()) {
             myArray.push(medias[media])
         }
-        console.log(myArray)
     }
+
+    // func that changes the order of array when called
+    function compare( a, b ) {
+        if ( a[sortBy] < b[sortBy] ){
+          return -1;
+        }
+        if ( a[sortBy] > b[sortBy] ){
+          return 1;
+        }
+        return 0;
+    }
+
+    // sorts the array
+    myArray.sort(compare)
+    return myArray
 }
 
 // converts photographer's name into an id (return Int)
@@ -80,7 +98,7 @@ function getPhotographerId() {
     }
 }
 
-// generates all photographer medias
+// generates photographer image
 function generateImage(index) {
 
     //creates HTML element
@@ -92,9 +110,9 @@ function generateImage(index) {
     const like = document.createElement("i");
 
     // creates a text to attach to the HTML element
-    const imagenode = document.createTextNode(myArray[index].image);
-    const titlenode = document.createTextNode(myArray[index].title);
-    const likeCounternode = document.createTextNode(myArray[index].likes);
+    const imagenode = document.createTextNode(photographerMediasArray()[index].image);
+    const titlenode = document.createTextNode(photographerMediasArray()[index].title);
+    const likeCounternode = document.createTextNode(photographerMediasArray()[index].likes);
 
     // joins the textNodes to HTML element
     image.appendChild(imagenode);
@@ -111,7 +129,7 @@ function generateImage(index) {
 
     // attributes a class
     container.setAttribute("class", "image");
-    image.setAttribute("src", "images/" + getPhotographerId() + "/" + myArray[index].image);
+    image.setAttribute("src", "images/" + getPhotographerId() + "/" + photographerMediasArray()[index].image);
     heading.setAttribute("class", "image__heading");
     title.setAttribute("class", "image__heading-title");
     likeCounter.setAttribute("class", "image__heading-like-counter");
@@ -130,9 +148,9 @@ function generateVideo(index) {
     const like = document.createElement("i");
 
     // creates a text to attach to the HTML element
-    const videonode = document.createTextNode(myArray[index].video);
-    const titlenode = document.createTextNode(myArray[index].title);
-    const likeCounternode = document.createTextNode(myArray[index].likes);
+    const videonode = document.createTextNode(photographerMediasArray()[index].video);
+    const titlenode = document.createTextNode(photographerMediasArray()[index].title);
+    const likeCounternode = document.createTextNode(photographerMediasArray()[index].likes);
 
     // joins the textNodes to HTML element
     video.appendChild(videonode);
@@ -149,7 +167,7 @@ function generateVideo(index) {
 
     // attributes a class
     container.setAttribute("class", "video");
-    video.setAttribute("src", "images/" + getPhotographerId() + "/" + myArray[index].video);
+    video.setAttribute("src", "images/" + getPhotographerId() + "/" + photographerMediasArray()[index].video);
     heading.setAttribute("class", "video__heading");
     title.setAttribute("class", "video__heading-title");
     likeCounter.setAttribute("class", "video__heading-like-counter");
@@ -221,6 +239,7 @@ function generateProfile(photographerIndex) {
 }
 
 function factory(array, index) {
+    console.log(array)
     if (array[index].hasOwnProperty("image")) {
             return generateImage(index)
     }
@@ -228,3 +247,4 @@ function factory(array, index) {
             return generateVideo(index)
     }
 }
+

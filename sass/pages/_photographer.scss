@@ -1,3 +1,8 @@
+label {
+    font-weight: 600;
+    margin-right: 20px;
+}
+
 .gallery {
     @extend .catalog;
     grid-gap: 100px;
@@ -10,6 +15,6 @@
     img {
         position: absolute;
         left: 80%;
-        top: 25%;
+        top: 180px;
     }
 }
