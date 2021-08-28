@@ -1,6 +1,9 @@
-
+// gets photogrphers and medias in arrays from json
 let photographers = [];
-let medias = [];
+let mediasFromJson = [];
+
+// DOM Elements
+
 
 //imports photographers
 fetch('./JSON/photographer.json')
@@ -11,17 +14,183 @@ fetch('./JSON/photographer.json')
             photographers = data["photographers"];
 
             // import medias
-            medias = data["media"];
+            mediasFromJson = data["media"];
 
-            for (let media = 0; media < photographerMediasArray().length; media++) {
-                console.log(media);
-                console.log(photographerMediasArray());
-                factory(photographerMediasArray(),media);
-            };
-
-            generateProfile(identifyPhotographer());
+            // displays photographer profile
+            generateProfile(getPhotographer());
 
             console.log("Im here")
+
+            class CreateImage {
+                constructor(id, photographerId, title, tags, likes, date, price, location, type) {
+                    this.id = id;
+                    this.photographerId = photographerId;
+                    this.title = title;
+                    this.tags = tags;
+                    this.likes = likes;
+                    this.date = date;
+                    this.price = price;
+                    this.location = location;
+                    this.type = "image"
+
+                }
+                // generates photographer image
+                displayImage() {
+
+                    //creates HTML element
+                    const container = document.createElement("section");
+                    const image = document.createElement("img");
+                    const heading = document.createElement("div");
+                    const title = document.createElement("p");
+                    const likeCounter = document.createElement("p");
+                    const like = document.createElement("i");
+
+                    // creates a text to attach to the HTML element
+                    const imagenode = document.createTextNode(this.location);
+                    const titlenode = document.createTextNode(this.title);
+                    const likeCounternode = document.createTextNode(this.likes);
+
+                    // joins the textNodes to HTML element
+                    image.appendChild(imagenode);
+                    title.appendChild(titlenode);
+                    likeCounter.appendChild(likeCounternode);
+                    
+                    // sets the new element to the DOM
+                    document.querySelector(".gallery").appendChild(container);
+                    container.appendChild(image);
+                    container.appendChild(heading);
+                    heading.appendChild(title);
+                    heading.appendChild(likeCounter);
+                    heading.appendChild(like);
+
+                    // attributes a class
+                    container.setAttribute("class", "image media");
+                    image.setAttribute("src", "images/" + this.photographerId + "/" + this.location);
+                    heading.setAttribute("class", "image__heading");
+                    title.setAttribute("class", "image__heading-title");
+                    likeCounter.setAttribute("class", "image__heading-like-counter");
+                    like.setAttribute("class", "fas fa-heart media-like");
+                }
+            }
+
+            class CreateVideo {
+                constructor(id, photographerId, title, tags, likes, date, price, type) {
+                    this.id = id;
+                    this.photographerId = photographerId;
+                    this.title = title;
+                    this.tags = tags;
+                    this.likes = likes;
+                    this.date = date;
+                    this.price = price; 
+                    this.type = "video"
+                }
+                 // generates photographer video
+                 displayVideo() {
+
+                    //creates HTML element
+                    const container = document.createElement("section");
+                    const video = document.createElement("video");
+                    const heading = document.createElement("div");
+                    const title = document.createElement("p");
+                    const likeCounter = document.createElement("p");
+                    const like = document.createElement("i");
+
+                    // creates a text to attach to the HTML element
+                    const videonode = document.createTextNode(this.location);
+                    const titlenode = document.createTextNode(this.title);
+                    const likeCounternode = document.createTextNode(this.likes);
+
+                    // joins the textNodes to HTML element
+                    video.appendChild(videonode);
+                    title.appendChild(titlenode);
+                    likeCounter.appendChild(likeCounternode);
+                    
+                    // sets the new element to the DOM
+                    document.querySelector(".gallery").appendChild(container);
+                    container.appendChild(video);
+                    container.appendChild(heading);
+                    heading.appendChild(title);
+                    heading.appendChild(likeCounter);
+                    heading.appendChild(like);
+
+                    // attributes a class
+                    container.setAttribute("class", "video media");
+                    video.setAttribute("src", "images/" + this.photographerId + "/" + this.location);
+                    heading.setAttribute("class", "video__heading");
+                    title.setAttribute("class", "video__heading-title");
+                    likeCounter.setAttribute("class", "video__heading-like-counter");
+                    like.setAttribute("class", "fas fa-heart media-like");
+                }
+
+            }
+
+            // creates and gathers medias
+            let medias = []
+            for (let media = 0; media < mediasFromJson.length; media++) {
+                if (mediasFromJson[media].photographerId === getPhotographerId()) {
+                    if (mediasFromJson[media].hasOwnProperty("image")) {
+                        medias.push(new CreateImage(mediasFromJson[media]["id"], mediasFromJson[media]["photographerId"], mediasFromJson[media]["title"], mediasFromJson[media]["tags"], mediasFromJson[media]["likes"], mediasFromJson[media]["date"], mediasFromJson[media]["price"], mediasFromJson[media]["image"]))
+                }
+                    else if (mediasFromJson[media].hasOwnProperty("video")) {
+                        medias.push(new CreateVideo(mediasFromJson[media]["id"], mediasFromJson[media]["photographerId"], mediasFromJson[media]["title"], mediasFromJson[media]["tags"], mediasFromJson[media]["likes"], mediasFromJson[media]["date"], mediasFromJson[media]["price"], mediasFromJson[media]["video"]))
+                }
+                }
+                // sorts medias by default
+                sortMedias()
+            }
+
+            console.log(medias)
+
+            // displays medias
+            medias.forEach(media => {
+                if (media.type.includes("image")) {media.displayImage()}
+                else if (media.type.includes("video")) {media.displayVideo()} 
+            })
+            
+            // adds sort function on <select>
+            document.getElementById("sort-by").addEventListener("change", () => {
+                
+                // removes all medias from page
+                document.querySelectorAll(".media").forEach(media => {media.remove()})
+
+                sortMedias()
+
+                // displays sorted medias
+                medias.forEach(media => { media.displayImage()})
+            })
+
+            // sorts medias Array 
+            function sortMedias() {
+
+                // get user <select> input
+                let sortBy = document.getElementById("sort-by").value;
+
+                // func that changes the order of array when called
+                function compare( a, b ) {
+                    if ( a[sortBy] < b[sortBy] ){
+                    return -1;
+                    }
+                    if ( a[sortBy] > b[sortBy] ){
+                    return 1;
+                    }
+                    return 0;
+                }
+
+                // sorts the array
+                medias.sort(compare)
+            }
+
+            // adds likes to likes count            
+            const likeButtons = document.querySelectorAll(".media-like");
+            const likeCounts = document.querySelectorAll(".image__heading-like-counter")
+
+            for (let i = 0; i < document.querySelectorAll(".media-like").length; i++ )  {
+                likeButtons[i].addEventListener("click", () => {
+                    medias[i].likes += 1;
+                    likeCounts[i].innerHTML = medias[i].likes;
+                    console.log(medias[0].likes)} )
+            }
+
         })
     }
     else { 
@@ -31,12 +200,11 @@ fetch('./JSON/photographer.json')
 });
 
 
-
-// identifies photographer from URL
+// gets photographer URI identifier component
 const urlParams = window.location.search;
 
-// identifies current photographer (return Int)
-function identifyPhotographer() {
+// decodes photographer's URI component (returns Int)
+function getPhotographer() {
     for (let photographer = 0; photographer < photographers.length; photographer++) {
         if (urlParams.includes(encodeURIComponent(photographers[photographer].name))) {
             return photographer
@@ -44,39 +212,9 @@ function identifyPhotographer() {
     }
 }
 
-// gather medias of the current photographer and organizes it (throught select)
-function photographerMediasArray() {
-    let myArray = [];
-
-    // get user <select> input
-    let sortBy = document.getElementById("sort-by").value;
-    
-    // fill the array
-    for (let media = 0; media < medias.length; media++) {
-        if (medias[media].photographerId === getPhotographerId()) {
-            myArray.push(medias[media])
-        }
-    }
-
-    // func that changes the order of array when called
-    function compare( a, b ) {
-        if ( a[sortBy] < b[sortBy] ){
-          return -1;
-        }
-        if ( a[sortBy] > b[sortBy] ){
-          return 1;
-        }
-        return 0;
-    }
-
-    // sorts the array
-    myArray.sort(compare)
-    return myArray
-}
-
 // converts photographer's name into an id (return Int)
 function getPhotographerId() {
-    switch (photographers[identifyPhotographer()].name) {
+    switch (photographers[getPhotographer()].name) {
         case "Mimi Keel":
             return 243;
             break;
@@ -96,82 +234,6 @@ function getPhotographerId() {
             return 930;
         break
     }
-}
-
-// generates photographer image
-function generateImage(index) {
-
-    //creates HTML element
-    const container = document.createElement("section");
-    const image = document.createElement("img");
-    const heading = document.createElement("div");
-    const title = document.createElement("p");
-    const likeCounter = document.createElement("p");
-    const like = document.createElement("i");
-
-    // creates a text to attach to the HTML element
-    const imagenode = document.createTextNode(photographerMediasArray()[index].image);
-    const titlenode = document.createTextNode(photographerMediasArray()[index].title);
-    const likeCounternode = document.createTextNode(photographerMediasArray()[index].likes);
-
-    // joins the textNodes to HTML element
-    image.appendChild(imagenode);
-    title.appendChild(titlenode);
-    likeCounter.appendChild(likeCounternode);
-    
-    // sets the new element to the DOM
-    document.querySelector(".gallery").appendChild(container);
-    container.appendChild(image);
-    container.appendChild(heading);
-    heading.appendChild(title);
-    heading.appendChild(likeCounter);
-    heading.appendChild(like);
-
-    // attributes a class
-    container.setAttribute("class", "image");
-    image.setAttribute("src", "images/" + getPhotographerId() + "/" + photographerMediasArray()[index].image);
-    heading.setAttribute("class", "image__heading");
-    title.setAttribute("class", "image__heading-title");
-    likeCounter.setAttribute("class", "image__heading-like-counter");
-    like.setAttribute("class", "fas fa-heart image-like");
-}
-
-// generates photographer video
-function generateVideo(index) {
-
-    //creates HTML element
-    const container = document.createElement("section");
-    const video = document.createElement("video");
-    const heading = document.createElement("div");
-    const title = document.createElement("p");
-    const likeCounter = document.createElement("p");
-    const like = document.createElement("i");
-
-    // creates a text to attach to the HTML element
-    const videonode = document.createTextNode(photographerMediasArray()[index].video);
-    const titlenode = document.createTextNode(photographerMediasArray()[index].title);
-    const likeCounternode = document.createTextNode(photographerMediasArray()[index].likes);
-
-    // joins the textNodes to HTML element
-    video.appendChild(videonode);
-    title.appendChild(titlenode);
-    likeCounter.appendChild(likeCounternode);
-    
-    // sets the new element to the DOM
-    document.querySelector(".gallery").appendChild(container);
-    container.appendChild(video);
-    container.appendChild(heading);
-    heading.appendChild(title);
-    heading.appendChild(likeCounter);
-    heading.appendChild(like);
-
-    // attributes a class
-    container.setAttribute("class", "video");
-    video.setAttribute("src", "images/" + getPhotographerId() + "/" + photographerMediasArray()[index].video);
-    heading.setAttribute("class", "video__heading");
-    title.setAttribute("class", "video__heading-title");
-    likeCounter.setAttribute("class", "video__heading-like-counter");
-    like.setAttribute("class", "fas fa-heart image-like");
 }
 
 // generates photographer profile
@@ -214,7 +276,7 @@ function generateProfile(photographerIndex) {
 
     // attributes a class
     container.setAttribute("class", "photographer-profile");
-    image.setAttribute("src", "images/Photographers ID Photos/" + photographers[photographerIndex].portrait);
+    image.setAttribute("src", "medias/Photographers ID Photos/" + photographers[photographerIndex].portrait);
     image.setAttribute("class", "photographer-profile__image");
     heading.setAttribute("class", "photographer-profile__heading");
     adress.setAttribute("class", "photographer-profile__location");
@@ -238,13 +300,7 @@ function generateProfile(photographerIndex) {
     });
 }
 
-function factory(array, index) {
-    console.log(array)
-    if (array[index].hasOwnProperty("image")) {
-            return generateImage(index)
-    }
-    else if (array[index].hasOwnProperty("video")) {
-            return generateVideo(index)
-    }
-}
+
+
+
 
