@@ -38,9 +38,9 @@ fetch('./JSON/photographer.json')
                 displayImage() {
 
                     //creates HTML element
-                    const container = document.createElement("section");
+                    const container = document.createElement("figure");
                     const image = document.createElement("img");
-                    const heading = document.createElement("div");
+                    const heading = document.createElement("figcaption");
                     const title = document.createElement("p");
                     const likeCounter = document.createElement("p");
                     const like = document.createElement("i");
@@ -74,14 +74,15 @@ fetch('./JSON/photographer.json')
             }
 
             class CreateVideo {
-                constructor(id, photographerId, title, tags, likes, date, price, type) {
+                constructor(id, photographerId, title, tags, likes, date, price, location, type) {
                     this.id = id;
                     this.photographerId = photographerId;
                     this.title = title;
                     this.tags = tags;
                     this.likes = likes;
                     this.date = date;
-                    this.price = price; 
+                    this.price = price;
+                    this.location = location; 
                     this.type = "video"
                 }
                  // generates photographer video
@@ -139,24 +140,25 @@ fetch('./JSON/photographer.json')
                 sortMedias()
             }
 
-            console.log(medias)
-
-            // displays medias
-            medias.forEach(media => {
-                if (media.type.includes("image")) {media.displayImage()}
-                else if (media.type.includes("video")) {media.displayVideo()} 
-            })
+            // displays all medias
+            function generateMedias() {
+                medias.forEach(media => {
+                    if (media.type.includes("image")) {media.displayImage()}
+                    else if (media.type.includes("video")) {media.displayVideo()} 
+                })
+            }
+            generateMedias()
             
             // adds sort function on <select>
             document.getElementById("sort-by").addEventListener("change", () => {
                 
                 // removes all medias from page
                 document.querySelectorAll(".media").forEach(media => {media.remove()})
-
+                
                 sortMedias()
-
+                console.log(medias)
                 // displays sorted medias
-                medias.forEach(media => { media.displayImage()})
+                generateMedias()
             })
 
             // sorts medias Array 
@@ -181,15 +183,25 @@ fetch('./JSON/photographer.json')
             }
 
             // adds likes to likes count            
-            const likeButtons = document.querySelectorAll(".media-like");
-            const likeCounts = document.querySelectorAll(".image__heading-like-counter")
-
             for (let i = 0; i < document.querySelectorAll(".media-like").length; i++ )  {
+                const likeButtons = document.querySelectorAll(".media-like");
+                const likeCounts = document.querySelectorAll(".image__heading-like-counter")
+
                 likeButtons[i].addEventListener("click", () => {
                     medias[i].likes += 1;
                     likeCounts[i].innerHTML = medias[i].likes;
-                    console.log(medias[0].likes)} )
+                    totalLikesDisplay()
+                } )
             }
+
+            // total likes counter
+            function totalLikesDisplay() {
+                let totalLikes = [];
+                medias.forEach(media => { totalLikes.push(media.likes)})
+                document.querySelector("#total-likes > p").innerHTML = totalLikes.reduce((a, b) => a + b, 0)
+            }
+            totalLikesDisplay()
+            
 
         })
     }
@@ -240,11 +252,11 @@ function getPhotographerId() {
 function generateProfile(photographerIndex) {
 
     //creates HTML element
-    const container = document.createElement("section");
+    const container = document.createElement("figure");
     const image = document.createElement("img");
     const heading = document.createElement("h2");
     const adress = document.createElement("p");
-    const tagline = document.createElement("p");
+    const tagline = document.createElement("q");
     const price = document.createElement("p");
     const tags = document.createElement("ul");
     const link = document.createElement("a");
@@ -276,7 +288,7 @@ function generateProfile(photographerIndex) {
 
     // attributes a class
     container.setAttribute("class", "photographer-profile");
-    image.setAttribute("src", "medias/Photographers ID Photos/" + photographers[photographerIndex].portrait);
+    image.setAttribute("src", "images/Photographers ID Photos/" + photographers[photographerIndex].portrait);
     image.setAttribute("class", "photographer-profile__image");
     heading.setAttribute("class", "photographer-profile__heading");
     adress.setAttribute("class", "photographer-profile__location");
@@ -299,8 +311,3 @@ function generateProfile(photographerIndex) {
         tag.setAttribute("class", "tag")
     });
 }
-
-
-
-
-
