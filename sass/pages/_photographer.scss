@@ -18,3 +18,21 @@ label {
         top: 180px;
     }
 }
+
+#total-likes {
+    width: 200px;
+    display: flex;
+    padding: 15px;
+    text-align: center;
+    justify-content: space-around;
+    background-color: #DB8876;
+    position: fixed;
+    bottom: 0px;
+    left: 80%;
+    font-size: 1.2em;
+    font-weight: 500;
+    border-radius: 5px 5px 0px 0px;
+    i {
+        margin-right: 20px;
+    }
+}

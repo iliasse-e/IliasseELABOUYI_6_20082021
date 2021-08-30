@@ -58,7 +58,7 @@ html {
 }
 
 /* Components */
-.contact {
+.contact, .form-container #form-btn, .form-container #ok-btn {
   height: 70px;
   background-color: #901C1C;
   color: white;
@@ -69,6 +69,13 @@ html {
   font-weight: 500;
   font-size: 1em;
   font-family: "DM Sans", sans-serif;
+  transition: 200ms;
+}
+.contact:hover, .form-container #form-btn:hover, .form-container #ok-btn:hover {
+  transition: 500ms;
+  transform: scale(105%);
+  filter: brightness(120%);
+  cursor: pointer;
 }
 
 .sort-by, .sort-by option {
@@ -116,6 +123,24 @@ label {
   top: 180px;
 }
 
+#total-likes {
+  width: 200px;
+  display: flex;
+  padding: 15px;
+  text-align: center;
+  justify-content: space-around;
+  background-color: #DB8876;
+  position: fixed;
+  bottom: 0px;
+  left: 80%;
+  font-size: 1.2em;
+  font-weight: 500;
+  border-radius: 5px 5px 0px 0px;
+}
+#total-likes i {
+  margin-right: 20px;
+}
+
 /* Layout */
 .photographer-profile {
   text-align: center;
@@ -145,6 +170,7 @@ label {
   font-size: 0.9em;
 }
 .photographer-profile__price {
+  margin-top: 4px;
   font-size: 0.8em;
   color: grey;
 }
@@ -190,6 +216,9 @@ label {
 .nav-tag-list:hover .tag:not(:hover) {
   opacity: 0.5;
   transition: 500ms;
+}
+.nav-tag-list .tag {
+  cursor: pointer;
 }
 .nav-tag-list .tag:hover {
   opacity: 1;
@@ -243,6 +272,86 @@ label {
   color: #901C1C;
   font-weight: 400;
   font-size: 1.2em;
+}
+.image__heading i, .video__heading i {
+  text-align: end;
+  cursor: pointer;
+}
+
+.form-container {
+  display: none;
+  position: fixed;
+  top: 7%;
+  left: 33%;
+  background-color: #DB8876;
+  font-family: "DM Sans", sans-serif;
+  width: 33%;
+  border-radius: 3px;
+  box-shadow: #C4C4C4 -3px 3px 6px;
+}
+.form-container form {
+  padding: 20px 30px 40px 30px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1em;
+}
+.form-container form #form-title {
+  line-height: 60px;
+  font-size: 2.5em;
+  font-weight: 400;
+  margin: 10px 0 20px 0;
+  white-space: nowrap;
+}
+.form-container form .form-data {
+  color: #312E2E;
+  border-radius: 2px;
+  border-width: 0;
+  height: 40px;
+  margin: 5px 0;
+  border-radius: 3px;
+  font-size: 1em;
+}
+.form-container label {
+  margin-top: 5px;
+  font-weight: 200;
+  font-size: 1.5em;
+}
+.form-container #form-msg {
+  height: 200px;
+  font-size: 1.5em;
+}
+.form-container #form-btn, .form-container #ok-btn {
+  height: 50px;
+  padding: 0;
+  margin-top: 10px;
+  font-size: 0.9em;
+}
+.close {
+  position: absolute;
+  right: 40px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 1;
+  transition: 200ms;
+}
+.close:hover {
+  opacity: 0.6;
+  transition: 200ms;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 18px;
+  content: " ";
+  height: 40px;
+  width: 5px;
+  background-color: white;
 }
 
 /*# sourceMappingURL=main.css.map */

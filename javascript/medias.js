@@ -1,9 +1,3 @@
-// gets photogrphers and medias in arrays from json
-let photographers = [];
-let mediasFromJson = [];
-
-// DOM Elements
-
 
 //imports photographers
 fetch('./JSON/photographer.json')
@@ -11,15 +5,116 @@ fetch('./JSON/photographer.json')
     console.log("Je suis la");
     if (response.ok) {
         response.json().then(data => {
-            photographers = data["photographers"];
+           
+            // import medias and photographers
+            let mediasFromJson = data["media"];
+            let photographers = data["photographers"];
 
-            // import medias
-            mediasFromJson = data["media"];
+            // gets photographer URI identifier component
+            const urlParams = window.location.search;
+
+            // decodes photographer's URI component (returns Int)
+            function getPhotographer() {
+                for (let photographer = 0; photographer < photographers.length; photographer++) {
+                    if (urlParams.includes(encodeURIComponent(photographers[photographer].name))) {
+                        return photographer
+                    }
+                }
+            }
+
+            // converts photographer's name into an id (return Int)
+            function getPhotographerId() {
+                switch (photographers[getPhotographer()].name) {
+                    case "Mimi Keel":
+                        return 243;
+                        break;
+                    case "Rhode Dubois":
+                        return 925;
+                    break;
+                    case "Marcel Nikolic":
+                        return 195;
+                    break;
+                    case "Nabeel Bradford":
+                        return 527;
+                    break;
+                    case "Tracy Galindo":
+                        return 82;
+                    break;
+                    case "Ellie-Rose Wilkens":
+                        return 930;
+                    break
+                }
+            }
+
+            // generates photographer profile
+            function generateProfile(photographerIndex) {
+
+                //creates HTML element
+                const container = document.createElement("figure");
+                const image = document.createElement("img");
+                const heading = document.createElement("h2");
+                const adress = document.createElement("p");
+                const tagline = document.createElement("q");
+                const price = document.createElement("p");
+                const tags = document.createElement("ul");
+                const link = document.createElement("a");
+                const headinglink = document.createElement("a");
+
+                // creates a text to attach to the HTML element
+                const adressnode = document.createTextNode(photographers[photographerIndex].city + ", " + photographers[photographerIndex].country);
+                const headingnode = document.createTextNode(photographers[photographerIndex].name);
+                const taglinenode = document.createTextNode(photographers[photographerIndex].tagline);
+                const pricenode = document.createTextNode(photographers[photographerIndex].price + "€ /jour")
+                const tagsgnode = document.createTextNode(photographers[photographerIndex].tags)
+
+                // joins the textNodes to HTML element
+                heading.appendChild(headingnode);
+                adress.appendChild(adressnode);
+                tagline.appendChild(taglinenode);
+                price.appendChild(pricenode);
+                
+                // sets the new element to the DOM
+                document.querySelector(".catalog").prepend(container);
+                container.appendChild(link);
+                link.appendChild(image);
+                container.appendChild(headinglink);
+                headinglink.appendChild(heading);
+                container.appendChild(adress);
+                container.appendChild(tagline);
+                container.appendChild(price);
+                container.appendChild(tags);
+
+                // attributes a class
+                container.setAttribute("class", "photographer-profile");
+                image.setAttribute("src", "images/Photographers ID Photos/" + photographers[photographerIndex].portrait);
+                image.setAttribute("class", "photographer-profile__image");
+                heading.setAttribute("class", "photographer-profile__heading");
+                adress.setAttribute("class", "photographer-profile__location");
+                tagline.setAttribute("class", "photographer-profile__tagline");
+                price.setAttribute("class", "photographer-profile__price");
+                tags.setAttribute("class", "tag-list");
+                link.setAttribute("href", "http://127.0.0.1:5500/photographer.html");
+                headinglink.setAttribute("href", "http://127.0.0.1:5500/photographer.html"+"?="+photographers[photographerIndex].name);
+
+                photographers[photographerIndex].tags.forEach(tag => {
+                    container.classList.add(tag)
+                }) 
+                
+                // sets tags
+                photographers[photographerIndex].tags.forEach(element => { 
+                    const tag = document.createElement("li");
+                    const tagnode = document.createTextNode("#"+element);
+                    tag.appendChild(tagnode);
+                    tags.appendChild(tag);
+                    tag.setAttribute("class", "tag")
+                });
+
+                // adds price to fixed figure
+                document.getElementById("photographer-price").innerHTML = photographers[photographerIndex].price + "€/ jour";
+            }
 
             // displays photographer profile
             generateProfile(getPhotographer());
-
-            console.log("Im here")
 
             class CreateImage {
                 constructor(id, photographerId, title, tags, likes, date, price, location, type) {
@@ -202,112 +297,13 @@ fetch('./JSON/photographer.json')
             }
             totalLikesDisplay()
             
+            
 
         })
     }
     else { 
         alert("Les données utilisateurs n'ont pas été chargées")
     }
-    console.log("Im here")
 });
 
 
-// gets photographer URI identifier component
-const urlParams = window.location.search;
-
-// decodes photographer's URI component (returns Int)
-function getPhotographer() {
-    for (let photographer = 0; photographer < photographers.length; photographer++) {
-        if (urlParams.includes(encodeURIComponent(photographers[photographer].name))) {
-            return photographer
-        }
-    }
-}
-
-// converts photographer's name into an id (return Int)
-function getPhotographerId() {
-    switch (photographers[getPhotographer()].name) {
-        case "Mimi Keel":
-            return 243;
-            break;
-        case "Rhode Dubois":
-            return 925;
-        break;
-        case "Marcel Nikolic":
-            return 195;
-        break;
-        case "Nabeel Bradford":
-            return 527;
-        break;
-        case "Tracy Galindo":
-            return 82;
-        break;
-        case "Ellie-Rose Wilkens":
-            return 930;
-        break
-    }
-}
-
-// generates photographer profile
-function generateProfile(photographerIndex) {
-
-    //creates HTML element
-    const container = document.createElement("figure");
-    const image = document.createElement("img");
-    const heading = document.createElement("h2");
-    const adress = document.createElement("p");
-    const tagline = document.createElement("q");
-    const price = document.createElement("p");
-    const tags = document.createElement("ul");
-    const link = document.createElement("a");
-    const headinglink = document.createElement("a");
-
-    // creates a text to attach to the HTML element
-    const adressnode = document.createTextNode(photographers[photographerIndex].city + ", " + photographers[photographerIndex].country);
-    const headingnode = document.createTextNode(photographers[photographerIndex].name);
-    const taglinenode = document.createTextNode(photographers[photographerIndex].tagline);
-    const pricenode = document.createTextNode(photographers[photographerIndex].price + "€ /jour")
-    const tagsgnode = document.createTextNode(photographers[photographerIndex].tags)
-
-    // joins the textNodes to HTML element
-    heading.appendChild(headingnode);
-    adress.appendChild(adressnode);
-    tagline.appendChild(taglinenode);
-    price.appendChild(pricenode);
-    
-    // sets the new element to the DOM
-    document.querySelector(".catalog").prepend(container);
-    container.appendChild(link);
-    link.appendChild(image);
-    container.appendChild(headinglink);
-    headinglink.appendChild(heading);
-    container.appendChild(adress);
-    container.appendChild(tagline);
-    container.appendChild(price);
-    container.appendChild(tags);
-
-    // attributes a class
-    container.setAttribute("class", "photographer-profile");
-    image.setAttribute("src", "images/Photographers ID Photos/" + photographers[photographerIndex].portrait);
-    image.setAttribute("class", "photographer-profile__image");
-    heading.setAttribute("class", "photographer-profile__heading");
-    adress.setAttribute("class", "photographer-profile__location");
-    tagline.setAttribute("class", "photographer-profile__tagline");
-    price.setAttribute("class", "photographer-profile__price");
-    tags.setAttribute("class", "tag-list");
-    link.setAttribute("href", "http://127.0.0.1:5500/photographer.html");
-    headinglink.setAttribute("href", "http://127.0.0.1:5500/photographer.html"+"?="+photographers[photographerIndex].name);
-
-    photographers[photographerIndex].tags.forEach(tag => {
-        container.classList.add(tag)
-    }) 
-    
-    // sets tags
-    photographers[photographerIndex].tags.forEach(element => { 
-        const tag = document.createElement("li");
-        const tagnode = document.createTextNode("#"+element);
-        tag.appendChild(tagnode);
-        tags.appendChild(tag);
-        tag.setAttribute("class", "tag")
-    });
-}

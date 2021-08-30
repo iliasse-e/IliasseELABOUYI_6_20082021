@@ -25,6 +25,7 @@
         transition: 500ms;
       }
       .tag {
+          cursor: pointer;
         &:hover {
             opacity: 1;
             border-color: $primary;

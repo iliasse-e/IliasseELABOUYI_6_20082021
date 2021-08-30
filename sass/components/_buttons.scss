@@ -8,6 +8,13 @@
     padding: 20px 0px;
     font-weight: 500;
     font-size: 1em;
-
     font-family: 'DM Sans', sans-serif;
+    transition: 200ms;
+
+    &:hover {
+        transition: 500ms;
+        transform: scale(105%);
+        filter: brightness(120%);
+        cursor: pointer;
+    }
 }
