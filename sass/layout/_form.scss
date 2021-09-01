@@ -22,6 +22,11 @@
             margin: 10px 0 20px 0;
             white-space: nowrap;
         }
+
+        .form-data-container {
+            display: flex;
+            flex-direction: column;
+        }
         
         .form-data {
             color: #312E2E;
@@ -89,5 +94,44 @@
   }
   
   
-  
-  
+// Error messages
+
+.form-data-container[data-error]::after {
+    content: attr(data-error);
+    font-size: 0.8em;
+    color: #a30414;
+    display: block;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    text-align: right;
+    line-height: 0.3;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.form-data-container[data-error-visible=true]::after {
+    opacity: 1;
+}
+
+.form-data-container[data-error-visible=true] input, .form-data-container[data-error-visible=true] textarea  {
+    border: 2px solid #e54858;
+}
+
+input[data-error]::after {
+    content: attr(data-error);
+    font-size: 0.4em;
+    color: #e54858;
+}
+
+// confirmation modal
+
+#form-sent {
+    height: 70%;
+    width: 33%;
+}
+
+#confirmation-msg {
+    text-align: center;
+    padding: 300px 5%;
+    font-size: 1.3em;
+}

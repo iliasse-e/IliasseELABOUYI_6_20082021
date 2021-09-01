@@ -11,38 +11,14 @@ fetch('./JSON/photographer.json')
             let photographers = data["photographers"];
 
             // gets photographer URI identifier component
-            const urlParams = window.location.search;
+            const urlParams = window.location.search.substring(2);
 
             // decodes photographer's URI component (returns Int)
             function getPhotographer() {
                 for (let photographer = 0; photographer < photographers.length; photographer++) {
-                    if (urlParams.includes(encodeURIComponent(photographers[photographer].name))) {
+                    if (urlParams == photographers[photographer].id) {
                         return photographer
                     }
-                }
-            }
-
-            // converts photographer's name into an id (return Int)
-            function getPhotographerId() {
-                switch (photographers[getPhotographer()].name) {
-                    case "Mimi Keel":
-                        return 243;
-                        break;
-                    case "Rhode Dubois":
-                        return 925;
-                    break;
-                    case "Marcel Nikolic":
-                        return 195;
-                    break;
-                    case "Nabeel Bradford":
-                        return 527;
-                    break;
-                    case "Tracy Galindo":
-                        return 82;
-                    break;
-                    case "Ellie-Rose Wilkens":
-                        return 930;
-                    break
                 }
             }
 
@@ -93,8 +69,6 @@ fetch('./JSON/photographer.json')
                 tagline.setAttribute("class", "photographer-profile__tagline");
                 price.setAttribute("class", "photographer-profile__price");
                 tags.setAttribute("class", "tag-list");
-                link.setAttribute("href", "http://127.0.0.1:5500/photographer.html");
-                headinglink.setAttribute("href", "http://127.0.0.1:5500/photographer.html"+"?="+photographers[photographerIndex].name);
 
                 photographers[photographerIndex].tags.forEach(tag => {
                     container.classList.add(tag)
@@ -223,7 +197,8 @@ fetch('./JSON/photographer.json')
             // creates and gathers medias
             let medias = []
             for (let media = 0; media < mediasFromJson.length; media++) {
-                if (mediasFromJson[media].photographerId === getPhotographerId()) {
+                if (mediasFromJson[media].photographerId == urlParams) {
+
                     if (mediasFromJson[media].hasOwnProperty("image")) {
                         medias.push(new CreateImage(mediasFromJson[media]["id"], mediasFromJson[media]["photographerId"], mediasFromJson[media]["title"], mediasFromJson[media]["tags"], mediasFromJson[media]["likes"], mediasFromJson[media]["date"], mediasFromJson[media]["price"], mediasFromJson[media]["image"]))
                 }
@@ -231,6 +206,7 @@ fetch('./JSON/photographer.json')
                         medias.push(new CreateVideo(mediasFromJson[media]["id"], mediasFromJson[media]["photographerId"], mediasFromJson[media]["title"], mediasFromJson[media]["tags"], mediasFromJson[media]["likes"], mediasFromJson[media]["date"], mediasFromJson[media]["price"], mediasFromJson[media]["video"]))
                 }
                 }
+                
                 // sorts medias by default
                 sortMedias()
             }
@@ -282,10 +258,11 @@ fetch('./JSON/photographer.json')
                 const likeButtons = document.querySelectorAll(".media-like");
                 const likeCounts = document.querySelectorAll(".image__heading-like-counter")
 
-                likeButtons[i].addEventListener("click", () => {
+                likeButtons[i].addEventListener("click", function addLike() {
                     medias[i].likes += 1;
                     likeCounts[i].innerHTML = medias[i].likes;
-                    totalLikesDisplay()
+                    totalLikesDisplay();
+                    likeButtons[i].removeEventListener("click", addLike)
                 } )
             }
 
@@ -297,6 +274,51 @@ fetch('./JSON/photographer.json')
             }
             totalLikesDisplay()
             
+
+
+            // DOM Element
+
+            const closeBtn = document.getElementById("lightbox-close");
+            const nextBtn = document.getElementById("lightbox-next");
+            const prevBtn = document.getElementById("lightbox-prev");
+            const mediaDOM = document.getElementById("lightbox-media");
+            const lightbox = document.getElementById("lightbox");
+            const lightboxHeading = document.getElementById("lightbox-title")
+
+            const mediasDOM = document.querySelectorAll(".media > img, video")
+            
+            // close lightbox
+            closeBtn.addEventListener("click", function closeLightbox() {
+                lightbox.style.display = "none";
+            })
+
+            // launch lightbox
+            mediasDOM.forEach((element, index) =>  element.addEventListener("click", () => {
+                lightbox.style.display = "flex";
+                mediaDOM.src= element.src;
+                lightboxHeading.innerHTML = element.nextSibling.firstChild.innerHTML;
+
+                let e = index;
+
+                //next media
+                nextBtn.addEventListener("click", () => {
+                    mediaDOM.src = mediasDOM[e +1].src;
+                    lightboxHeading.innerHTML = mediasDOM[e +1].nextSibling.firstChild.innerHTML;
+                    e++
+                })
+
+                //previous media
+                prevBtn.addEventListener("click", () => {
+                    mediaDOM.src = mediasDOM[e -1].src;
+                    lightboxHeading.innerHTML = mediasDOM[e -1].nextSibling.firstChild.innerHTML
+                    e--
+                })
+                
+
+                }
+
+                
+            ))
             
 
         })

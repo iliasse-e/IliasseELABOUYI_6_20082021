@@ -74,7 +74,7 @@ fetch('./JSON/photographer.json')
                 tagline.setAttribute("class", "photographer-profile__tagline");
                 price.setAttribute("class", "photographer-profile__price");
                 tags.setAttribute("class", "tag-list");
-                link.setAttribute("href", "https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/photographer.html"+"?="+photographers[photographerIndex].name);
+                link.setAttribute("href", "http://127.0.0.1:5500/photographer.html"+"?="+photographers[photographerIndex].id);
                 headinglink.setAttribute("href", "https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/photographer.html"+"?="+photographers[photographerIndex].name);
 
                 photographers[photographerIndex].tags.forEach(tag => {
@@ -110,25 +110,29 @@ fetch('./JSON/photographer.json')
                 })
             }
 
+            navTags.forEach((element) => element.setAttribute("my-tag", ""));
             // sticks CSS attributes and filter profiles
             navTags.forEach((element) => element.addEventListener("click", () => {
                 
                 // displays filtered profiles
                 filterByTag(element.id)
                 
-                navTags.forEach((element) => element.setAttribute("my-tag", "false"));
-                element.setAttribute("my-tag", "true");
-                
-                // resets tag selection
-                document.querySelector("[my-tag=true]").onclick = function resetTagSearch() {
-
-                    navTags.forEach((element) => element.removeAttribute("my-tag"));
-                    photographerProfiles.forEach((photographer) => {
-                        photographer.removeAttribute("tag-selected")
-                    })
+                if (element.getAttribute("my-tag") !== "true") {
+                    navTags.forEach((element) => element.setAttribute("my-tag", "false"));
+                    element.setAttribute("my-tag", "true");
                 }
                 
+                // resets tag selection
+                else {
+                        navTags.forEach((element) => element.setAttribute("my-tag", ""));
+                        photographerProfiles.forEach((photographer) => {
+                            photographer.removeAttribute("tag-selected")
+                        })
+                }
             }))
+
+            
+
 
         })
     }

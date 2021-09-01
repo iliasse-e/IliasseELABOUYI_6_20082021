@@ -5,9 +5,11 @@
         height: 300px;
         object-fit: cover;
         border-radius: 5px;
+        cursor: pointer;
     }
     video {
         width: 100%;
+        cursor: pointer;
     }
     &__heading {
         margin-top: 10px;

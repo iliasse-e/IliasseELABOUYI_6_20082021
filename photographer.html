@@ -52,42 +52,65 @@
         <div class="form-container" id="form-contact">
 
             <div class="close" id="close-form"></div>
-            <form>
+            <form onsubmit="return false">
                 
               <p id="form-title">Contactez-moi </p>
           
-              <label for="fname">Prénom</label>
-              <input class="form-data" type="text" id="form-firstname" name="firstname" pattern="^[a-zA-Z ]*$" required min="2">
-          
-              <label for="lname">Nom</label>
-              <input class="form-data" type="text" id="form-lastname" name="lastname" pattern="^[a-zA-Z ]*$" required min="2">
+             <div class="form-data-container" id="form-firstname-container">
+                <label for="fname">Prénom</label>
+                <input class="form-data" type="text" id="form-firstname" name="firstname" pattern="^[a-zA-Z ]*$" required minlength="2">
+             </div>
+              
+             <div class="form-data-container" id="form-lastname-container">
+                <label for="lname">Nom</label>
+                <input class="form-data" type="text" id="form-lastname" name="lastname" pattern="^[a-zA-Z ]*$" required minlength="2">
+             </div>
+              
                 
-              <label for="lname">Email</label>
-              <input class="form-data" type="email" id="form-email" name="lastname"  required>
+              <div class="form-data-container" id="form-email-container">
+                <label for="lname">Email</label>
+                <input class="form-data" type="email" id="form-email" name="lastname"  required>
+              </div>
+          
+              <div class="form-data-container" id="form-msg-container">
+                <label for="subject">Votre message</label>
+                <textarea type="text" class="form-data" id="form-msg" name="subject" minlength="30" required></textarea>
+              </div>
               
           
-              <label for="subject">Votre message</label>
-              <textarea type="text" class="form-data" id="form-msg" name="subject" min="30" required></textarea>
-          
-              <input id="form-btn" type="submit" value="Envoyer">
+              <input id="form-btn" type="submit" onclick="validate()" value="Envoyer">
           
             </form>
         </div>
         
         <div class="form-container" id="form-sent">
 
-            <div class="close"></div>
-            <input id="ok-btn" type="submit" value="Ok">
+            <div class="close" id="close-confirmation"></div>
+            <div id="confirmation-msg">
+            </div>
 
         </div> 
+
+        <figure class="lightbox" id="lightbox">
+            
+            <button class="lightbox__prev" id="lightbox-prev"></button>
+            <div class="lightbox__container" id="lightbox-container">
+                <img id="lightbox-media" src="./images/195/Travel_SunsetonCanals.jpg" alt="">
+            </div>
+            <button class="lightbox__close" id="lightbox-close"></button>
+            <button class="lightbox__next" id="lightbox-next"></button>
+            
+            <p class="lightbox__heading" id="lightbox-title"></p>
+        </figure>
 
         <figure id="total-likes">
             <p></p>
             <i class="fas fa-heart media-like"></i>
-            <p id="photographer-price">300/jour</p>
+            <p id="photographer-price"></p>
         </figure>
     </main>
     <script type="module" src="./javascript/medias.js"></script>
     <script type="module" src="./javascript/contact.js"></script>
+    <script type="text" src="./javascript/lightbox.js"></script>
 </body>
 </html>
