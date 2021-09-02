@@ -1,5 +1,6 @@
 .photographer-profile {
     text-align: center;
+    animation: displayLightbox 500ms;
     *{
         padding: 5px;
         text-decoration: none;
@@ -32,5 +33,14 @@
     &__tags {
         font-size: 12px;
         font-weight: 500;
+    }
+}
+
+@keyframes displayLightbox {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100%;
     }
 }

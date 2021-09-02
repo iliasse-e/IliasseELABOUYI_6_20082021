@@ -144,6 +144,7 @@ label {
 /* Layout */
 .photographer-profile {
   text-align: center;
+  animation: displayLightbox 500ms;
 }
 .photographer-profile * {
   padding: 5px;
@@ -179,6 +180,14 @@ label {
   font-weight: 500;
 }
 
+@keyframes displayLightbox {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
 .main_header {
   display: flex;
   width: 70%;
@@ -256,15 +265,11 @@ label {
 .image, .video {
   width: 100%;
 }
-.image img, .video img {
+.image img, .image video, .video img, .video video {
   width: 100%;
   height: 300px;
   object-fit: cover;
   border-radius: 5px;
-  cursor: pointer;
-}
-.image video, .video video {
-  width: 100%;
   cursor: pointer;
 }
 .image__heading, .video__heading {
@@ -406,6 +411,8 @@ input[data-error]::after {
   width: 100%;
   margin: auto;
   background-color: white;
+  z-index: 1;
+  animation: displayLightbox 500ms linear;
 }
 .lightbox button {
   opacity: 0.8;
@@ -413,6 +420,7 @@ input[data-error]::after {
   cursor: pointer;
   margin: 20px;
   width: 40px;
+  z-index: 2;
 }
 .lightbox button:hover {
   transition: 200ms;
@@ -449,19 +457,36 @@ input[data-error]::after {
   display: flex;
   justify-content: center;
 }
-.lightbox__container img {
+.lightbox__container img, .lightbox__container video {
   margin: auto;
   object-fit: cover;
-  width: calc(100% - 50px);
-  max-width: 1050px;
+  width: 1050px;
   height: 800px;
+  z-index: 2;
 }
 .lightbox__heading {
   position: absolute;
-  left: 24%;
+  left: 22.5%;
   bottom: 25px;
   color: #901C1C;
   font-size: 1.2em;
+}
+
+#blocker {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@keyframes displayLightbox {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

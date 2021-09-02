@@ -6,6 +6,8 @@
     width: 100%;
     margin: auto;
     background-color: white;
+    z-index: 1;
+    animation: displayLightbox 500ms linear;
 
     button {
         opacity: 0.8;
@@ -13,6 +15,7 @@
         cursor: pointer;
         margin: 20px;
         width: 40px;
+        z-index: 2;
         &:hover {
             transition: 200ms;
             opacity: 1;
@@ -49,19 +52,36 @@
         display: flex;
         justify-content: center;
         
-        img {
+        img, video {
             margin: auto;
             object-fit: cover;
-            width: calc(100% - 50px);
-            max-width: 1050px;
+            width: 1050px;
             height: 800px;
+            z-index: 2;
         }
     }
     &__heading {
         position: absolute;
-        left: 24%;
+        left: 22.5%;
         bottom: 25px;
         color: $primary;
         font-size: 1.2em;
+    }
+}
+
+#blocker {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+@keyframes displayLightbox {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100%;
     }
 }
