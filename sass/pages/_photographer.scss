@@ -9,9 +9,15 @@ label {
 }
 
 .profile-container {
+    
     display: flex;
     justify-content: start;
     margin: 50px;
+    
+    figure {
+        pointer-events: none;
+    }
+    
     img {
         position: absolute;
         left: 80%;
@@ -35,4 +41,10 @@ label {
     i {
         margin-right: 20px;
     }
+}
+
+#error-not-found {
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
 }

@@ -1,0 +1,44 @@
+/* animation */
+
+@mixin fade-in-animation($animation-delay) {
+    animation: displayLightbox cubic-bezier(.39,.58,.57,1) $animation-delay ;
+}
+
+
+/* Beakpoints */
+
+@mixin desktop {
+    @media (min-width: map-get($breakpoints, desktop)) {
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media (min-width: map-get($breakpoints, laptop)) {
+        @content;
+    }
+}
+
+@mixin small-screen {
+    @media (min-width: map-get($breakpoints, small-screen)) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: map-get($breakpoints, tablet)) {
+        @content;
+    }
+}
+
+@mixin large-mobile {
+    @media (min-width: map-get($breakpoints, large-mobile)) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (min-width: map-get($breakpoints, mobile)) {
+        @content;
+    }
+}

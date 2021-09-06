@@ -4,3 +4,32 @@ $primary:#901C1C;
 $secondary: #D3573C;
 $grey: #C4C4C4;
 $form-color : #DB8876;
+
+
+/* Media queries - Breakpoints */
+
+$breakpoints: (
+  mobile: 320px,
+  large-mobile: 360px,
+  tablet: 480px,
+  small-screen: 769px,
+  laptop: 1024px,
+  desktop: 1224px,
+);
+
+
+
+/* spaces for margin and paddings */
+
+$small-spacing: 10px;
+$regular-spacing: 20px;
+$medium-spacing: 40px;
+$big-spacing: 70px;
+
+
+
+/* animation duration */
+
+$fast-duration: 400ms;
+$medium-duration: 600ms;
+$slow-duration: 800ms;

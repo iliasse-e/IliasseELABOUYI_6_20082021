@@ -8,6 +8,7 @@
     width: 33%;
     border-radius: 3px;
     box-shadow: $grey -3px 3px 6px ;
+    @include fade-in-animation($medium-duration);
 
     form {
         padding: 20px 30px 40px 30px;
@@ -96,7 +97,7 @@
   
 // Error messages
 
-.form-data-container[data-error]::after {
+.form-data-container[data-error-visible=true]::after {
     content: attr(data-error);
     font-size: 0.8em;
     color: #a30414;

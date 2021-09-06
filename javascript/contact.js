@@ -54,7 +54,7 @@ closeBtnConfirmation.addEventListener( "click", () => {
 })
 
 // error message
-function ErrorMsgDisplay(formField) {
+function errorMsgDisplay(formField) {
 
     if (!formField.location.validity.valid || formField.location.validity.valueMissing) {
       formField.container.setAttribute("data-error", formField.errorMsg);
@@ -67,7 +67,7 @@ function ErrorMsgDisplay(formField) {
 }
 
 formFields.forEach(field => {
-    field.location.addEventListener("change", () => { ErrorMsgDisplay(field)})
+    field.location.addEventListener("change", () => { errorMsgDisplay(field)})
    }
 )
 
@@ -75,19 +75,20 @@ formFields.forEach(field => {
 const validationMsg = "Merci, votre message a bien été envoyé";
 submitBtn.onclick = validate;
 
-// inspects if form is fully filled
-function formIsValid() {
-
+// inspects if entire form is valid
+function isValid() {
     for (let i = 0; i < formFields.length; i++) {  
-      if (formFields[i].input.ErrorMsgDisplay() == false) {
-        return false}
+        if (!formFields[i].location.validity.valid) {
+            console.log("fonctionne")
+            return false
+        }
     }
     return true
 }
 
 function validate() {
     
-    if (formIsValid) {
+    if (isValid()) {
         contactForm.style.display="none";
         confirmationModal.style.display="block";
         form.reset();
@@ -95,7 +96,7 @@ function validate() {
     }
     else {
         formFields.forEach(field => {
-            field.location.addEventListener("change", () => { ErrorMsgDisplay(field)})
+            field.location.addEventListener("change", () => { errorMsgDisplay(field)})
            }
         )
     }

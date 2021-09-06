@@ -1,6 +1,11 @@
 /* Import */
 /* Utils */
 /*Colors*/
+/* Media queries - Breakpoints */
+/* spaces for margin and paddings */
+/* animation duration */
+/* animation */
+/* Beakpoints */
 /* Base */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -59,6 +64,7 @@ html {
 
 /* Components */
 .contact, .form-container #form-btn, .form-container #ok-btn {
+  order: 2;
   height: 70px;
   background-color: #901C1C;
   color: white;
@@ -117,6 +123,9 @@ label {
   justify-content: start;
   margin: 50px;
 }
+.profile-container figure {
+  pointer-events: none;
+}
 .profile-container img {
   position: absolute;
   left: 80%;
@@ -141,10 +150,16 @@ label {
   margin-right: 20px;
 }
 
+#error-not-found {
+  display: flex;
+  justify-content: center;
+  font-size: 2em;
+}
+
 /* Layout */
 .photographer-profile {
   text-align: center;
-  animation: displayLightbox 500ms;
+  animation: displayLightbox cubic-bezier(0.39, 0.58, 0.57, 1) 800ms;
 }
 .photographer-profile * {
   padding: 5px;
@@ -180,14 +195,6 @@ label {
   font-weight: 500;
 }
 
-@keyframes displayLightbox {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 100%;
-  }
-}
 .main_header {
   display: flex;
   width: 70%;
@@ -255,7 +262,7 @@ label {
 }
 .tag[my-tag=true]:hover::after {
   content: " x";
-  color: rgba(255, 0, 0, 0.719);
+  color: rgba(202, 0, 0, 0.719);
 }
 
 .tag[my-tag=false] {
@@ -264,6 +271,7 @@ label {
 
 .image, .video {
   width: 100%;
+  animation: displayLightbox cubic-bezier(0.39, 0.58, 0.57, 1) 800ms;
 }
 .image img, .image video, .video img, .video video {
   width: 100%;
@@ -283,8 +291,28 @@ label {
 .image__heading i, .video__heading i {
   text-align: end;
   cursor: pointer;
+  transition: 200ms;
+}
+.image__heading i:hover, .video__heading i:hover {
+  scale: 1.1;
+  transition: 200ms;
+}
+.image__heading i:active, .video__heading i:active {
+  animation: like 800ms linear;
+  color: red;
 }
 
+@keyframes like {
+  0% {
+    scale: 1.1;
+  }
+  50% {
+    scale: 1.5;
+  }
+  100% {
+    scale: 1;
+  }
+}
 .form-container {
   display: none;
   position: fixed;
@@ -295,6 +323,7 @@ label {
   width: 33%;
   border-radius: 3px;
   box-shadow: #C4C4C4 -3px 3px 6px;
+  animation: displayLightbox cubic-bezier(0.39, 0.58, 0.57, 1) 600ms;
 }
 .form-container form {
   padding: 20px 30px 40px 30px;
@@ -365,7 +394,7 @@ label {
   background-color: white;
 }
 
-.form-data-container[data-error]::after {
+.form-data-container[data-error-visible=true]::after {
   content: attr(data-error);
   font-size: 0.8em;
   color: #a30414;
