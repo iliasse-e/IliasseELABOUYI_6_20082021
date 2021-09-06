@@ -50,8 +50,8 @@ export function generateProfile(array, photographerIndex) {
     tagline.classList.add("photographer-profile__tagline");
     price.classList.add("photographer-profile__price");
     tags.classList.add("tag-list");
-    link.setAttribute("href", "http://127.0.0.1:5500/photographer.html"+"?="+array[photographerIndex].id);
-    headinglink.setAttribute("href", "https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/photographer.html"+"?="+array[photographerIndex].name);
+    link.setAttribute("href", "https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/photographer.html"+"?="+array[photographerIndex].id);
+    headinglink.setAttribute("href", "https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/photographer.html"+"?="+array[photographerIndex].id);
 
     array[photographerIndex].tags.forEach(tag => {
         container.classList.add(tag)

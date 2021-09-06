@@ -16,18 +16,20 @@
         color: $primary;
         font-weight: 400;
         font-size: 1.2em;
+        
         i {
             text-align: end;
             cursor: pointer;
             transition: 200ms;
-        }
-        i:hover { 
-            scale: 1.1;
-            transition: 200ms;
-        }
-        i:active {
-            animation: like 800ms linear;
-            color: red;
+        
+            &:hover { 
+                scale: 1.1;
+                transition: 200ms;
+            }
+            &:active {
+                animation: like 800ms linear;
+                color: red;
+            }
         }
     }
 }
