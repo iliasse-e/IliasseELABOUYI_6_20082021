@@ -23,9 +23,18 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+	overflow-x: hidden;
 	line-height: 1;
-	margin: 50px 75px;
+	margin: 50px $big-spacing;
 	font-family: 'DM Sans', sans-serif;
+
+	@include tablet {
+		margin: $small-spacing;
+	}
+
+	@include desktop {
+		margin: $medium-spacing;
+	}
 }
 ol, ul {
 	list-style: none;

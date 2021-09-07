@@ -1,6 +1,19 @@
+.gallery {
+    @include tablet {
+        padding: 0;
+        margin: 0;
+        margin-bottom: 80px;
+    }
+}
+
 .image, .video {
     width: 100%;
     @include fade-in-animation($slow-duration);
+
+    @include tablet {
+        margin: 10px;
+        width: auto;
+    }
     
     img, video {
         width: 100%;

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="main.css" />
     <title>Fishe Eye</title>
 </head>
-<body>
+<body class="photographer-gallery">
 
     <header class="photographer_header">
         <div class="banner">
@@ -28,7 +28,7 @@
         </section>
 
         <section class="gallery-container">
-            <label for="sort-by">Trier par</label>
+            <label id="sort-by-label" for="sort-by">Trier par</label>
 
             <select class="sort-by" id="sort-by">
                 <option class="option" value="likes">Popularité</option>
@@ -66,7 +66,7 @@
           
               <div class="form-data-container" id="form-msg-container">
                 <label for="subject">Votre message</label>
-                <textarea type="text" class="form-data" id="form-msg" name="subject" aria-label="your message" role="textbox" minlength="30" required></textarea>
+                <textarea type="text" class="form-data" id="form-msg" name="subject" aria-label="your message" role="textbox" minlength="50" required></textarea>
               </div>
               
           

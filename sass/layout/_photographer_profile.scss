@@ -1,8 +1,11 @@
 .photographer-profile {
     text-align: center;
     @include fade-in-animation($slow-duration);
-    
 
+    @include tablet {
+        margin-bottom: $medium-spacing;
+    }
+    
     *{
         padding: 5px;
         text-decoration: none;
@@ -36,5 +39,10 @@
     &__tags {
         font-size: 12px;
         font-weight: 500;
+    }
+    .tag-list {
+        @include desktop {
+            flex-wrap: wrap;
+        }
     }
 }

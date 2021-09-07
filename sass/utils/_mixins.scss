@@ -8,37 +8,37 @@
 /* Beakpoints */
 
 @mixin desktop {
-    @media (min-width: map-get($breakpoints, desktop)) {
+    @media (max-width: map-get($breakpoints, desktop)) {
         @content;
     }
 }
 
 @mixin laptop {
-    @media (min-width: map-get($breakpoints, laptop)) {
+    @media (max-width: map-get($breakpoints, laptop)) {
         @content;
     }
 }
 
 @mixin small-screen {
-    @media (min-width: map-get($breakpoints, small-screen)) {
+    @media (max-width: map-get($breakpoints, small-screen)) {
         @content;
     }
 }
 
 @mixin tablet {
-    @media (min-width: map-get($breakpoints, tablet)) {
+    @media (max-width: map-get($breakpoints, tablet)) {
         @content;
     }
 }
 
 @mixin large-mobile {
-    @media (min-width: map-get($breakpoints, large-mobile)) {
+    @media (max-width: map-get($breakpoints, large-mobile)) {
         @content;
     }
 }
 
 @mixin mobile {
-    @media (min-width: map-get($breakpoints, mobile)) {
+    @media (max-width: map-get($breakpoints, mobile)) {
         @content;
     }
 }

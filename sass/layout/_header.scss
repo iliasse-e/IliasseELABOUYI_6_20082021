@@ -1,12 +1,34 @@
-.main_header {
+.main_header, .photographer_header {
     display: flex;
     width: 70%;
     .banner {
         margin: 0 20px;
+        @include tablet {
+            margin: $medium-spacing $small-spacing;
+            img {
+                width: 170px;           
+            } 
+        }
     }
     .header-tags {
         margin: auto;
         color: $primary;
         font-weight: 500;
+
+        @include tablet {
+            display: flex;
+            position: absolute;
+            top: 130px;
+            width: 90%;
+            left: 2%;
+            right: 2%;
+            .tag-list {
+                flex-wrap: wrap;
+            }
+        }
+
+        @include desktop {
+            flex-wrap: wrap;
+        }
     }
 }

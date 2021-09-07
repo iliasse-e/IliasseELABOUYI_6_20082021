@@ -18,4 +18,15 @@
         filter: brightness(120%);
         cursor: pointer;
     }
+
+    @include tablet {
+        position: fixed;
+        margin: auto;
+        left: 10%;
+        right: 10%;
+        bottom: 3%;
+        padding: 5px 10px;
+        height: auto;
+        width: 40%;
+    }
 }

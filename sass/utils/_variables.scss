@@ -9,14 +9,13 @@ $form-color : #DB8876;
 /* Media queries - Breakpoints */
 
 $breakpoints: (
-  mobile: 320px,
-  large-mobile: 360px,
-  tablet: 480px,
-  small-screen: 769px,
-  laptop: 1024px,
-  desktop: 1224px,
+  small-mobile: 360px,
+  mobile: 480px,
+  tablet: 769px,
+  small-screen: 1024px,
+  laptop: 1224px,
+  desktop: 1578px,
 );
-
 
 
 /* spaces for margin and paddings */
@@ -25,7 +24,6 @@ $small-spacing: 10px;
 $regular-spacing: 20px;
 $medium-spacing: 40px;
 $big-spacing: 70px;
-
 
 
 /* animation duration */
