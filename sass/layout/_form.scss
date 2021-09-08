@@ -33,6 +33,10 @@
             font-weight: 400;
             margin: 10px 0 20px 0;
             white-space: nowrap;
+
+            @include tablet {
+                line-height: unset;
+            }
         }
 
         .form-data-container {
@@ -78,7 +82,7 @@
     }
 }
 
-// creates close cross
+// creates closing cross
 
 .close {
     position: absolute;
@@ -88,6 +92,11 @@
     height: 32px;
     opacity: 1;
     transition: 200ms;
+
+    @include tablet {
+        width: 20px;
+        height: 20px;
+    }
 
     &:hover {
         opacity: 0.6;

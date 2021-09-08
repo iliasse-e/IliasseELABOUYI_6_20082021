@@ -3,7 +3,7 @@ import { CreateMedia } from "./factory.js";
 import { generateProfile } from "./profile.js";
 
 //imports photographers
-fetch('./JSON/photographer.json')
+fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.json')
 .then(function (response) {
   console.log("Je suis la");
   if (response.ok) {

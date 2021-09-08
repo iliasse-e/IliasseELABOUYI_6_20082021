@@ -1,7 +1,7 @@
 import { generateProfile } from "./profile.js";
 
 // import (photographer profil) json data
-fetch('./JSON/photographer.json')
+fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.json')
 .then(function (response) {
   console.log("Je suis la");
   if (response.ok) {

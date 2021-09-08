@@ -4,17 +4,21 @@
     top: 50px;
     right: 9%;
     color: $primary;
-    
-    @include tablet {
-        font-size: 1.2em;
-        font-weight: 400;
-        top: 60px;
-        right: $regular-spacing;
-    }
 
     @include desktop {
         top: 46px;
         right: 5%;
+    }
+    
+    @include tablet {
+        font-size: 1.2em;
+        font-weight: 400;
+        top: 57px;
+        right: $regular-spacing;
+    }
+    
+    @include small-mobile {
+        font-size: 1em;
     }
 }
 
@@ -27,6 +31,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     
     @include tablet {
+        margin-top: 100px;
         display: block;
     }
 }

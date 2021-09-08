@@ -39,14 +39,14 @@ body {
   margin: 50px 70px;
   font-family: "DM Sans", sans-serif;
 }
-@media (max-width: 769px) {
-  body {
-    margin: 10px;
-  }
-}
 @media (max-width: 1578px) {
   body {
     margin: 40px;
+  }
+}
+@media (max-width: 769px) {
+  body {
+    margin: 10px;
   }
 }
 
@@ -122,18 +122,23 @@ html {
   right: 9%;
   color: #901C1C;
 }
-@media (max-width: 769px) {
-  .title {
-    font-size: 1.2em;
-    font-weight: 400;
-    top: 60px;
-    right: 20px;
-  }
-}
 @media (max-width: 1578px) {
   .title {
     top: 46px;
     right: 5%;
+  }
+}
+@media (max-width: 769px) {
+  .title {
+    font-size: 1.2em;
+    font-weight: 400;
+    top: 57px;
+    right: 20px;
+  }
+}
+@media (max-width: 360px) {
+  .title {
+    font-size: 1em;
   }
 }
 
@@ -147,6 +152,7 @@ html {
 }
 @media (max-width: 769px) {
   .catalog, .gallery {
+    margin-top: 100px;
     display: block;
   }
 }
@@ -214,6 +220,9 @@ html {
     left: auto;
     top: 140px;
   }
+  .profile-container .photographer-profile__tagline {
+    width: 80%;
+  }
   .profile-container .photographer-profile .tag-list {
     justify-content: start;
     flex-wrap: wrap;
@@ -223,6 +232,11 @@ html {
   .profile-container .photographer-profile .tag {
     font-size: 0.8em;
     padding: 5px;
+  }
+}
+@media (max-width: 360px) {
+  .profile-container .photographer-profile {
+    width: 60%;
   }
 }
 
@@ -253,6 +267,13 @@ html {
   display: flex;
   justify-content: center;
   font-size: 2em;
+  text-align: center;
+  margin: 70px 10px;
+}
+@media (max-width: 769px) {
+  #error-not-found {
+    font-size: 1.2em;
+  }
 }
 
 /* Layout */
@@ -278,7 +299,7 @@ html {
 .photographer-profile__heading {
   font-size: 2.5em;
   color: #D3573C;
-  font-size: 400;
+  font-weight: 400;
   margin-bottom: -15px;
 }
 .photographer-profile__location {
@@ -313,16 +334,29 @@ html {
 }
 @media (max-width: 769px) {
   .main_header .banner, .photographer_header .banner {
-    margin: 40px 10px;
+    margin: 35px 10px;
   }
   .main_header .banner img, .photographer_header .banner img {
     width: 170px;
+  }
+}
+@media (max-width: 480px) {
+  .main_header .banner, .photographer_header .banner {
+    margin: 40px 10px;
+  }
+  .main_header .banner img, .photographer_header .banner img {
+    width: 130px;
   }
 }
 .main_header .header-tags, .photographer_header .header-tags {
   margin: auto;
   color: #901C1C;
   font-weight: 500;
+}
+@media (max-width: 1578px) {
+  .main_header .header-tags, .photographer_header .header-tags {
+    flex-wrap: wrap;
+  }
 }
 @media (max-width: 769px) {
   .main_header .header-tags, .photographer_header .header-tags {
@@ -334,11 +368,6 @@ html {
     right: 2%;
   }
   .main_header .header-tags .tag-list, .photographer_header .header-tags .tag-list {
-    flex-wrap: wrap;
-  }
-}
-@media (max-width: 1578px) {
-  .main_header .header-tags, .photographer_header .header-tags {
     flex-wrap: wrap;
   }
 }
@@ -395,9 +424,22 @@ html {
   color: gray;
   transition: none;
 }
+@media (max-width: 769px) {
+  .tag[my-tag=true]:hover {
+    border-color: unset;
+    color: unset;
+    transition: unset;
+  }
+}
 .tag[my-tag=true]:hover::after {
   content: " x";
   color: rgba(202, 0, 0, 0.719);
+}
+@media (max-width: 769px) {
+  .tag[my-tag=true]:hover::after {
+    content: none;
+    color: unset;
+  }
 }
 
 .tag[my-tag=false] {
@@ -418,7 +460,7 @@ html {
 }
 @media (max-width: 769px) {
   .image, .video {
-    margin: 10px;
+    margin: 30px 10px;
     width: auto;
   }
 }
@@ -499,6 +541,11 @@ html {
   margin: 10px 0 20px 0;
   white-space: nowrap;
 }
+@media (max-width: 769px) {
+  .form-container form #form-title {
+    line-height: unset;
+  }
+}
 .form-container form .form-data-container {
   display: flex;
   flex-direction: column;
@@ -540,6 +587,12 @@ html {
   height: 32px;
   opacity: 1;
   transition: 200ms;
+}
+@media (max-width: 769px) {
+  .close {
+    width: 20px;
+    height: 20px;
+  }
 }
 .close:hover {
   opacity: 0.6;
