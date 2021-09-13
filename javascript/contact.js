@@ -1,3 +1,5 @@
+import { tabindexAdder } from "./tabindex.js";
+
 // DOM Elements
 const contactForm = document.getElementById("form-contact");
 const form = document.querySelector(".form-contact, form");
@@ -44,15 +46,18 @@ const formFields = [
 contactBtn.addEventListener("click", () => {
   displayTitle();
   contactForm.style.display = "block";
+  tabindexAdder(".tab-element-modal");
 });
 
 // close modal
 closeBtn.addEventListener("click", () => {
   contactForm.style.display = "none";
+  tabindexAdder(".tab-element");
 });
 
 closeBtnConfirmation.addEventListener("click", () => {
   confirmationModal.style.display = "none";
+  tabindexAdder(".tab-element");
 });
 
 // error message

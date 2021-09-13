@@ -5,6 +5,10 @@
     right: 9%;
     color: $primary;
 
+    h1 {
+        font-weight: 400;
+    }
+
     @include desktop {
         top: 46px;
         right: 5%;
@@ -35,3 +39,4 @@
         display: block;
     }
 }
+

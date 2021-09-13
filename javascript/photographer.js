@@ -1,6 +1,8 @@
 import { lightbox } from "./lightbox.js";
 import { CreateMedia } from "./factory.js";
 import { generateProfile } from "./profile.js";
+import { tabindexAdder } from "./tabindex.js";
+import { like, totalLikeCounter } from "./like.js"
 
 //imports photographers
 fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.json')
@@ -16,7 +18,10 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
       // gets photographer URI identifier component
       const urlParams = window.location.search.substring(2);
 
-      // decodes photographer's URI component (returns Int)
+      /**
+       * Decodes photographer's URI component
+       * @returns {Number} photographer id 
+       */
       function getPhotographer() {
         let index = "error"
         for (let photographer = 0; photographer < photographers.length; photographer++) {
@@ -29,24 +34,38 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
       // displays photographer profile
       generateProfile(photographers, getPhotographer());
       
-      // creates and gathers medias
-      let medias = []
-      for (let media = 0; media < mediasFromJson.length; media++) {
-        if (mediasFromJson[media].photographerId == urlParams) {
-    
-          if (mediasFromJson[media].hasOwnProperty("image")) {
-              medias.push(new CreateMedia(mediasFromJson[media]["id"], mediasFromJson[media]["photographerId"], mediasFromJson[media]["title"], mediasFromJson[media]["tags"], mediasFromJson[media]["likes"], mediasFromJson[media]["date"], mediasFromJson[media]["price"], mediasFromJson[media]["image"], "image"))
-          }
-          else if (mediasFromJson[media].hasOwnProperty("video")) {
-              medias.push(new CreateMedia(mediasFromJson[media]["id"], mediasFromJson[media]["photographerId"], mediasFromJson[media]["title"], mediasFromJson[media]["tags"], mediasFromJson[media]["likes"], mediasFromJson[media]["date"], mediasFromJson[media]["price"], mediasFromJson[media]["video"], "video"))
-          }
-        }
-        // sorts medias by default
-        sortMedias()
-      }
       
-      // display medias
-      medias.forEach(media => {media.displayMedia()})
+      let medias = [];
+
+      /**
+       * creates and gathers medias in array and display each media
+       */
+      function createmedias() {
+        for (let media = 0; media < mediasFromJson.length; media++) {
+          if (mediasFromJson[media].photographerId == urlParams) {
+
+                medias.push(new CreateMedia(mediasFromJson[media]["id"],
+                mediasFromJson[media]["photographerId"],
+                mediasFromJson[media]["title"],
+                mediasFromJson[media]["tags"],
+                mediasFromJson[media]["likes"],
+                mediasFromJson[media]["date"], 
+                mediasFromJson[media]["price"], 
+                mediasFromJson[media][CreateMedia.getType(mediasFromJson[media])], 
+                CreateMedia.getType(mediasFromJson[media]),
+                medias.length,
+                ))
+         
+          }
+          // sorts medias by default
+          sortMedias(medias)
+        }
+        // display medias
+        medias.forEach(media => {media.displayMedia()})
+      }
+
+      createmedias()
+      
       
       // adds sort function on <select>
       document.getElementById("sort-by").addEventListener("change", () => {
@@ -54,7 +73,7 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
         // removes all medias from page
         document.querySelectorAll(".media").forEach(media => {media.remove()})
         
-        sortMedias()
+        sortMedias(medias)
         // displays sorted medias
         medias.forEach(media => {media.displayMedia()})
         like();
@@ -62,8 +81,11 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
 
       })
 
-      // sorts medias Array 
-      function sortMedias() {
+      /**
+       * Sorts array elements by category selected (name, date or popularity)
+       * @param {array} target 
+       */
+      function sortMedias(target) {
 
         // get user <select> input
         let sortBy = document.getElementById("sort-by").value;
@@ -79,48 +101,16 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
             return 0;
         }
         // sorts the array
-        medias.sort(compare)
+        target.sort(compare)
       }
 
-      // adds likes to likes count         
-      function like() {
-        const likeButtons = document.querySelectorAll(".media-like");
-        const likeCounts = document.querySelectorAll(".image__heading-like-counter");
-        const currentmediaElements = document.querySelectorAll(".media > img");
-        document.querySelectorAll(".media-like").forEach((likeBtn, index) => likeBtn.onclick = function addLike() {
+      like(medias) 
 
-          for (let e=0; e < medias.length; e++) {
-            if (currentmediaElements[index].innerHTML == medias[e].location) {
-              if (medias[e].liked == true) {
-                medias[e].likes -= 1;
-                likeCounts[index].innerHTML = medias[e].likes;
-                medias[e].liked = false;   
-              }
-              else {
-                medias[e].likes += 1;
-                likeCounts[index].innerHTML = medias[e].likes;
-                medias[e].liked = true;
-              }
-            }
-          }
-            
-        totalLikeCounter();
-        })
-      }
+      totalLikeCounter(medias);
 
-      like() 
+      tabindexAdder(".tab-element");
 
-
-      // total likes counter
-      function totalLikeCounter() {
-        let totalLikes = [];
-        medias.forEach(media => { totalLikes.push(media.likes)})
-        document.querySelector("#total-likes > p").innerHTML = totalLikes.reduce((a, b) => a + b, 0)
-      }
-      totalLikeCounter()
-
-      lightbox()
-      
+      lightbox();
 
     })
   }

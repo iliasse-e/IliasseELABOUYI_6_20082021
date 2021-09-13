@@ -15,7 +15,7 @@
 
     <header class="photographer_header">
         <div class="banner">
-            <a class="back-home-link" href="index.html">
+            <a class="back-home-link tab-element" href="index.html">
                 <img src="./svg/logo.svg" aria-label="logo" role="return home">
             </a>
             
@@ -24,16 +24,16 @@
 
     <main>
         <section class="catalog profile-container">
-            <button id="contact-me" class="contact" role="button" aria-label="contact photographer">Contactez-moi</button>
+            <button id="contact-me" class="contact tab-element" role="button" aria-label="contact photographer">Contactez-moi</button>
         </section>
 
         <section class="gallery-container">
             <label id="sort-by-label" for="sort-by">Trier par</label>
 
-            <select class="sort-by" id="sort-by">
-                <option class="option" value="likes">Popularité</option>
-                <option value="date">Date</option>
-                <option value="title">Titre</option>
+            <select class="sort-by tab-element" id="sort-by">
+                <option class="sort-by__option" value="likes">Popularité</option>
+                <option class="sort-by__option" value="date">Date</option>
+                <option class="sort-by__option" value="title">Titre</option>
             </select>
 
             <section class="gallery">
@@ -43,41 +43,41 @@
 
         <div class="form-container" id="form-contact" role="form" aria-label="contact form">
 
-            <div class="close" id="close-form" aria-label="close form"></div>
+            <div class="close tab-element-modal" id="close-form" aria-label="close form"></div>
             <form onsubmit="return false">
                 
               <p id="form-title">Contactez-moi </p>
           
              <div class="form-data-container" id="form-firstname-container">
                 <label for="fname">Prénom</label>
-                <input class="form-data" type="text" id="form-firstname" aria-label="your firstname" role="text" name="firstname" pattern="^[a-zA-Z ]*$" required minlength="2">
+                <input class="form-data tab-element-modal" type="text" id="form-firstname" aria-label="your firstname" role="text" name="firstname" pattern="^[a-zA-Z ]*$" required minlength="2">
              </div>
               
              <div class="form-data-container" id="form-lastname-container">
                 <label for="lname">Nom</label>
-                <input class="form-data" type="text" id="form-lastname" aria-label="your lastname" role="text" name="lastname" pattern="^[a-zA-Z ]*$" required minlength="2">
+                <input class="form-data tab-element-modal" type="text" id="form-lastname" aria-label="your lastname" role="text" name="lastname" pattern="^[a-zA-Z ]*$" required minlength="2">
              </div>
               
                 
               <div class="form-data-container" id="form-email-container">
                 <label for="lname">Email</label>
-                <input class="form-data" type="email" id="form-email" name="lastname" aria-label="your email" role="text" required>
+                <input class="form-data tab-element-modal" type="email" id="form-email" name="lastname" aria-label="your email" role="text" required>
               </div>
           
               <div class="form-data-container" id="form-msg-container">
                 <label for="subject">Votre message</label>
-                <textarea type="text" class="form-data" id="form-msg" name="subject" aria-label="your message" role="textbox" minlength="50" required></textarea>
+                <textarea type="text" class="form-data tab-element-modal" id="form-msg" name="subject" aria-label="your message" role="textbox" minlength="50" required></textarea>
               </div>
               
           
-              <input id="form-btn" type="submit" onclick="validate()" aria-label="send message" value="Envoyer">
+              <input id="form-btn" class="tab-element-modal" type="submit" onclick="validate()" aria-label="send message" value="Envoyer">
           
             </form>
         </div>
         
         <div class="form-container" id="form-sent" aria-label="">
 
-            <div class="close" id="close-confirmation"></div>
+            <div class="close tab-element-modal" id="close-confirmation"></div>
             <div id="confirmation-msg">
             </div>
 
@@ -96,11 +96,11 @@
             <div id="blocker"></div>
         </figure>
 
-        <figure id="total-likes">
+        <aside id="total-likes">
             <p></p>
             <i class="fas fa-heart media-like"></i>
             <p id="photographer-price"></p>
-        </figure>
+        </aside>
     </main>
     <script type="module" src="./javascript/photographer.js"></script>
     <script type="module" src="./javascript/contact.js"></script>

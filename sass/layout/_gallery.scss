@@ -6,7 +6,7 @@
     }
 }
 
-.image, .video {
+.media {
     width: 100%;
     @include fade-in-animation($slow-duration);
 

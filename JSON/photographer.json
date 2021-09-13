@@ -176,7 +176,8 @@
         "tags": ["sport"],
         "likes": 52,
         "date": "2013-02-30",
-        "price": 70
+        "price": 70,
+        "alt": "athlète sur un aviron, vu de haut"
       },
       {
         "id": 92758372,
@@ -186,7 +187,8 @@
         "tags": ["fashion"],
         "likes": 58,
         "date": "2018-07-17",
-        "price": 70
+        "price": 70,
+        "alt": "couple de chorégraphes habillés de manière contrasté"
       },
       {
         "id": 32958383,
@@ -196,7 +198,8 @@
         "tags": ["fashion"],
         "likes": 11,
         "date": "2019-08-12",
-        "price": 70
+        "price": 70,
+        "alt": "femme habillé d'une robe rouge"
       },
       {
         "id": 928587383,
@@ -206,7 +209,8 @@
         "tags": ["events"],
         "likes": 2,
         "date": "2019-01-02",
-        "price": 70
+        "price": 70,
+        "alt": "réunion de travail"
       },
       {
         "id": 725639493,
@@ -216,7 +220,8 @@
         "tags": ["events"],
         "likes": 3,
         "date": "2019-05-20",
-        "price": 70
+        "price": 70,
+        "alt": "réunion présentation produit dans une entreprise"
       },
       {
         "id": 23394384,
@@ -226,7 +231,8 @@
         "tags": ["events"],
         "likes": 52,
         "date": "2019-07-18",
-        "price": 70
+        "price": 70,
+        "alt": "musicienne jouant du synthétiseur"
       },
       {
         "id": 87367293,
@@ -236,7 +242,8 @@
         "tags": ["events"],
         "likes": 23,
         "date": "2018-02-22",
-        "price": 70
+        "price": 70,
+        "alt": "chanteuse dans un concert"
       },
       {
         "id": 593834784,
@@ -246,7 +253,8 @@
         "tags": ["animals"],
         "likes": 52,
         "date": "2017-03-13",
-        "price": 70
+        "price": 70,
+        "alt": "gros plan d'un cerf au coucher du soleil"
       },
       {
         "id": 83958935,
@@ -256,7 +264,8 @@
         "tags": ["animals"],
         "likes": 52,
         "date": "2016-06-12",
-        "price": 70
+        "price": 70,
+        "alt": "plan vidéo d'un chien jouant dans le sable"
       },
   
       {
@@ -267,7 +276,8 @@
         "tags": ["travel"],
         "likes": 23,
         "date": "2017-03-18",
-        "price": 45
+        "price": 45,
+        "alt": "plan de haut d'une montagne"
       },
       {
         "id": 343423425,
@@ -277,7 +287,8 @@
         "tags": ["travel"],
         "likes": 101,
         "date": "2017-04-03",
-        "price": 45
+        "price": 45,
+        "alt": "bains chauds extérieurs"
       },
       {
         "id": 73434243,
@@ -287,7 +298,8 @@
         "tags": ["travel"],
         "likes": 99,
         "date": "2018-04-30",
-        "price": 45
+        "price": 45,
+        "alt": "route traversant un paysage montagneux"
       },
       {
         "id": 23425523,
@@ -297,7 +309,8 @@
         "tags": ["travel"],
         "likes": 34,
         "date": "2016-04-05",
-        "price": 45
+        "price": 45,
+        "alt": "pont traversant une fôret"
       },
       {
         "id": 23134513,
@@ -307,7 +320,8 @@
         "tags": ["travel"],
         "likes": 23,
         "date": "2017-03-18",
-        "price": 45
+        "price": 45,
+        "alt": "grand plan d'un lac dans une montagne vu d'une barque"
       },
       {
         "id": 92352352,
@@ -317,7 +331,8 @@
         "tags": ["portrait"],
         "likes": 66,
         "date": "2018-05-24",
-        "price": 45
+        "price": 45,
+        "alt": "portrait d'une jeune femme rousse souriant"
       },
       {
         "id": 34513453,
@@ -327,7 +342,8 @@
         "tags": ["portait"],
         "likes": 52,
         "date": "2017-04-21",
-        "price": 45
+        "price": 45,
+        "alt": "noir et blanc d'un jeune homme en fond noir"
       },
       {
         "id": 23523533,
@@ -337,7 +353,8 @@
         "tags": ["portait"],
         "likes": 95,
         "date": "2018-11-02",
-        "price": 45
+        "price": 45,
+        "alt": "portrait d'une jeune femme noire avec chevelure blanche"
       },
       {
         "id": 525834234,
@@ -347,7 +364,8 @@
         "tags": ["portait"],
         "likes": 25,
         "date": "2019-01-02",
-        "price": 45
+        "price": 45,
+        "alt": "portrait vieil homme tenant une cigarette"
       },
   
       {
@@ -358,7 +376,8 @@
         "tags": ["travel"],
         "likes": 88,
         "date": "2019-02-03",
-        "price": 45
+        "price": 45,
+        "alt": "photo de paysage montagneux et rocailleux illuminé par un fil de lumière"
       },
       {
         "id": 625025343,
@@ -368,7 +387,8 @@
         "tags": ["travel"],
         "likes": 85,
         "date": "2019-04-03",
-        "price": 45
+        "price": 45,
+        "alt": "paysage d'un village italien sur la côte rocheuse de la méditéranée en début de soirée"
       },
       {
         "id": 2525345343,
@@ -378,7 +398,8 @@
         "tags": ["portait"],
         "likes": 34,
         "date": "2019-04-07",
-        "price": 45
+        "price": 45,
+        "alt": "portrait d'une fille grimaçant"
       },
       {
         "id": 2523434634,
@@ -388,7 +409,8 @@
         "tags": ["portait"],
         "likes": 63,
         "date": "2019-04-07",
-        "price": 45
+        "price": 45,
+        "alt": "portrait jeune photo aux cheveux courts portant des lunettes"
       },
       {
         "id": 398847109,
@@ -398,7 +420,8 @@
         "tags": ["portait"],
         "likes": 55,
         "date": "2019-06-20",
-        "price": 45
+        "price": 45,
+        "alt": "portait jeune femme en noir et blanc sur fond noir"
       },
       {
         "id": 2534342,
@@ -408,7 +431,8 @@
         "tags": ["events"],
         "likes": 25,
         "date": "2019-06-21",
-        "price": 45
+        "price": 45,
+        "alt": "décor de la table d'invités de mariage"
       },
       {
         "id": 65235234,
@@ -418,7 +442,8 @@
         "tags": ["events"],
         "likes": 52,
         "date": "2019-06-25",
-        "price": 45
+        "price": 45,
+        "alt": "photographie intime de mariées"
       },
       {
         "id": 23523434,
@@ -428,7 +453,8 @@
         "tags": ["events"],
         "likes": 77,
         "date": "2019-06-28",
-        "price": 45
+        "price": 45,
+        "alt": "couple de mariée sur le lieu vide de la cérémonie"
       },
       {
         "id": 5234343,
@@ -438,7 +464,8 @@
         "tags": ["animals"],
         "likes": 142,
         "date": "2019-08-23",
-        "price": 60
+        "price": 60,
+        "alt": "chevaux autour des montagnes enneigées"
       },
       {
         "id": 95234343,
@@ -448,7 +475,8 @@
         "tags": ["animals"],
         "likes": 59,
         "date": "2019-07-02",
-        "price": 60
+        "price": 60,
+        "alt": "gros plan oiseau multicoloré"
       },
   
       {

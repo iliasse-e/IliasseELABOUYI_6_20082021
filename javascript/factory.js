@@ -2,20 +2,22 @@
  * This class uses the factory pattern to create media objects and display them
  * The method creates a DOM content from the object which is an image, title,
  * like count and container
- * @param id [int] one number for each media
- * @param photographerId [int] links to its photographer
- * @param title [string] name of the media
- * @param tags [string] array of tag elements
- * @param likes [int] likes number
- * @param date YYYY-MM-DD
- * @param price [int] price of the media
- * @param location [int] Name of the file to bring in (ex: "animal_zoo.jpg")
- * @param type [string] Defines if the media is an image or video (takes "image" or "video")
- * @param liked [bool] by default "false", it will be "true" when user is going to "like"
  */
 
 export class CreateMedia {
-  constructor(id, photographerId, title, tags, likes, date, price, location, type, liked) {
+  /** 
+   * @param {Number} id one number for each media
+   * @param {Number} photographerId links to its photographer
+   * @param {String} title name of the media
+   * @param {Array} tags array which contains tag elements
+   * @param {Number} likes likes number
+   * @param {Date} date YYYY-MM-DD
+   * @param {Number} price price of the media
+   * @param {String} location Name of the file to bring in (ex: "animal_zoo.jpg")
+   * @param {String} type Defines if the media is an image or video (takes "image" or "video")
+   * @param {Boolean} liked by default "false", it will be "true" when user is going to "like"
+   */
+  constructor(id, photographerId, title, tags, likes, date, price, location, type, liked ) {
     this.id = id;
     this.photographerId = photographerId;
     this.title = title;
@@ -29,7 +31,21 @@ export class CreateMedia {
   }
 
   /**
-   * This method of class creates from a new media :
+   * This method get the type (image, video) to create a media
+   * @param {any} target element to analyse
+   * @returns {String} type of media (image or video)
+   */
+  static getType(target) {
+    if (target.hasOwnProperty("image")) {
+      return "image"
+    }
+    else if (target.hasOwnProperty("video")) {
+      return "video"
+    }
+  }
+
+  /**
+   * This method of class creates from an Object :
    * new nodes,
    * generates them on the DOM,
    * gives them attributes
@@ -69,9 +85,10 @@ export class CreateMedia {
     // attributes a class
     container.classList.add(this.type, "media");
     media.setAttribute("src", `images/${this.photographerId}/${this.location}`);
-    heading.classList.add(`${this.type}__heading`);
-    title.classList.add(`${this.type}__heading-title`);
-    likeCounter.classList.add(`${this.type}__heading-like-counter`);
+    media.classList.add("tab-element");
+    heading.classList.add("media__heading");
+    title.classList.add("media__heading-title");
+    likeCounter.classList.add("media__heading-like-counter");
     like.classList.add("fas", "fa-heart", "media-like");
   }
 }

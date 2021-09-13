@@ -1,12 +1,12 @@
 /**
   * Displays photographer profile in DOM
-  * @param array : [array] array of photographers
-  * @param photographerIndex : [int] photographer id, highly suggested to call "getPhotographer()"
+  * @param {Array} array array of photographer's objects
+  * @param {Number} photographerIndex photographer id, highly suggested to call "getPhotographer()"
   */
 
 export function generateProfile(array, photographerIndex) {
 
-  /* photographer not found */
+  // error msg if photographer not found 
   if (photographerIndex === undefined) {
     console.log(photographerIndex)
     document.querySelector(".catalog").remove();
@@ -19,7 +19,7 @@ export function generateProfile(array, photographerIndex) {
     document.querySelector("main").appendChild(error);
   }
 
-  /* photographer found get the DOM ready to display */
+  // photographer found get the DOM ready to display
   else {
     //creates HTML element
     const container = document.createElement("figure");
@@ -56,10 +56,11 @@ export function generateProfile(array, photographerIndex) {
     container.appendChild(price);
     container.appendChild(tags);
   
-    // attributes a class
+    // sets attributes
     container.classList.add("photographer-profile");
     image.setAttribute("src", "images/Photographers ID Photos/" + array[photographerIndex].portrait);
-    image.classList.add("photographer-profile__image");
+    image.setAttribute("alt", "profile picture of " + array[photographerIndex].name + " - Page photographer")
+    image.classList.add("photographer-profile__image", "tab-element");
     heading.classList.add("photographer-profile__heading");
     adress.classList.add("photographer-profile__location");
     tagline.classList.add("photographer-profile__tagline");

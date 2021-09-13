@@ -36,6 +36,11 @@ body {
 		margin: $small-spacing;
 	}	
 }
+
+*:focus {
+	outline: solid orange;
+}
+
 ol, ul {
 	list-style: none;
 }

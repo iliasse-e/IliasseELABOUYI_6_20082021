@@ -14,19 +14,19 @@
 
     <header class="main_header" aria-label="header">
         <div class="banner">
-            <img src="./svg/logo.svg" aria-label="logo">
+            <img src="./svg/logo.svg" aria-label="logo" alt="logo Fisheye">
         </div>
-        <nav class="header-tags" aria-label="navigation">
-            <ul aria-label="filters photographers by theme" role="button" class="tag-list nav-tag-list">
+        <nav class="header-tags" aria-label="navigation" role="navigation" id="nav-tags">
+            <ul aria-label="filters photographers by theme" role="button" class="tag-list nav-tag-list" aria-labelledby="nav-tags">
               </ul> 
         </nav>
     </header>
 
     <main>
-        <div class="title" aria-label="main title">
-            <p>Nos photgraphes</p>
+        <div class="title" id="our-photographers" aria-label="main title">
+            <h1>Nos photographes</h1>
         </div>
-        <section class="catalog" aria-label="photographer catalog">
+        <section class="catalog" aria-label="photographer catalog" aria-labelledby="our-photographers">
         </section>
     </main>
     <script type="module" src="./javascript/main.js"></script>

@@ -1,4 +1,5 @@
 import { generateProfile } from "./profile.js";
+import { tabindexAdder } from "./tabindex.js";
 
 // import (photographer profil) json data
 fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.json')
@@ -24,17 +25,14 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
         document.querySelector(".nav-tag-list").appendChild(tag);
         const tagnode = document.createTextNode("#"+element);
         tag.appendChild(tagnode);
-        tag.classList.add("tag");
+        tag.classList.add("tag", "tab-element");
         tag.setAttribute("id", element);
         }
       )
 
-
-
       for (let i = 0; i < photographers.length; i++ ) {
         generateProfile(photographers, i)
       }
-
 
       // DOM Elements
       let navTags =  document.querySelectorAll(".nav-tag-list > .tag"); 
@@ -71,6 +69,8 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
                 })
         }
       }))
+
+      tabindexAdder(".tab-element");
 
 
     })
