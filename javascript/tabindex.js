@@ -58,8 +58,8 @@ function resetTabFocus() {
   // last tabindex sets focus to first tab element on keybord event
   activeElement[0].addEventListener("keydown", function(event) {
     if (event.shiftKey && event.keyCode === 9) {
-      event.preventDefault();
       activeElement[activeElement.length-1].focus();
+      console.log(activeElement[activeElement.length-1]);
     }
   })
   
