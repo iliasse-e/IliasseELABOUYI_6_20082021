@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,75 +9,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/1d4b85ca7e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="main.css" />
-    <title>Fishe Eye</title>
+    <title>Fishe Eye - Galerie du photographe</title>
 </head>
-<body class="photographer-gallery">
+<body aria-hidden="false" class="photographer-gallery">
 
     <header class="photographer_header">
         <div class="banner">
-            <a class="back-home-link tab-element" href="index.html">
-                <img src="./svg/logo.svg" aria-label="logo" role="return home">
+            <a id="backhome" class="back-home-link tab-element" aria-label="retour à la page d'accueil" href="index.html">
+                <img src="./svg/logo.svg" aria-labelledby="backhome" role="button">
             </a>
-            
         </div>
     </header>
 
     <main>
-        <section class="catalog profile-container">
-            <button id="contact-me" class="contact tab-element" role="button" aria-label="contact photographer">Contactez-moi</button>
+        <section class="catalog profile-container" aria-label="profil du photographe">
+            <button id="contact-me" class="contact tab-element" aria-label="contacter le photographe">Contactez-moi</button>
         </section>
 
-        <section class="gallery-container">
-            <label id="sort-by-label" for="sort-by">Trier par</label>
+        <section class="gallery-container"  aria-hidden="false">
 
-            <select class="sort-by tab-element" id="sort-by">
-                <option class="sort-by__option" value="likes">Popularité</option>
-                <option class="sort-by__option" value="date">Date</option>
-                <option class="sort-by__option" value="title">Titre</option>
+            <label id="sort-by-label" aria-label="Trier la gallerie photo par" for="sort-by">Trier par</label>
+
+            <select class="sort-by tab-element" id="sort-by" aria-labelledby="sort-by-label">
+                <option class="sort-by__option" aria-label="trié par nombre de like" value="likes">Popularité</option>
+                <option class="sort-by__option" aria-label="trié par date " value="date">Date</option>
+                <option class="sort-by__option" aria-label="trié par nom" value="title">Titre</option>
             </select>
 
-            <section class="gallery">
+            <section class="gallery" aria-label="galerie photo">
             </section>
 
         </section>
 
-        <div class="form-container" id="form-contact" role="form" aria-label="contact form">
+        <div class="form-container" id="form-contact" role="dialog" aria-hidden="true" aria-label="formulaire de contact">
 
-            <div class="close tab-element-modal" id="close-form" aria-label="close form"></div>
+            <div class="close tab-element-modal" id="close-form" aria-label="fermer le formulaire de contact"></div>
             <form onsubmit="return false">
+
+              <fieldset>
+                <legend class="hidden">Vos coordonées</legend>
+                <p id="form-title">Contactez-moi </p>
+          
+                <div class="form-data-container" id="form-firstname-container">
+                    <label id="firstname" for="first-name">Prénom</label>
+                    <input class="form-data tab-element-modal" type="text" id="form-firstname" aria-labelledby="firstname" role="text" name="firstname" pattern="^[a-zA-Z ]*$" required minlength="2" aria-required="true">
+                </div>
                 
-              <p id="form-title">Contactez-moi </p>
-          
-             <div class="form-data-container" id="form-firstname-container">
-                <label for="fname">Prénom</label>
-                <input class="form-data tab-element-modal" type="text" id="form-firstname" aria-label="your firstname" role="text" name="firstname" pattern="^[a-zA-Z ]*$" required minlength="2">
-             </div>
-              
-             <div class="form-data-container" id="form-lastname-container">
-                <label for="lname">Nom</label>
-                <input class="form-data tab-element-modal" type="text" id="form-lastname" aria-label="your lastname" role="text" name="lastname" pattern="^[a-zA-Z ]*$" required minlength="2">
-             </div>
-              
+                <div class="form-data-container" id="form-lastname-container">
+                    <label for="last-name" id="lastname">Nom</label>
+                    <input class="form-data tab-element-modal" type="text" id="form-lastname" aria-labelledby="lastname" role="text" name="lastname" pattern="^[a-zA-Z ]*$" required minlength="2" aria-required="true">
+                </div>
                 
-              <div class="form-data-container" id="form-email-container">
-                <label for="lname">Email</label>
-                <input class="form-data tab-element-modal" type="email" id="form-email" name="lastname" aria-label="your email" role="text" required>
-              </div>
+                <div class="form-data-container" id="form-email-container">
+                  <label for="email" id="email">Email</label>
+                  <input class="form-data tab-element-modal" type="email" id="form-email" name="email" aria-labelledby="email" role="text" required aria-required="true">
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend class="hidden">Votre message</legend>
+                <div class="form-data-container" id="form-msg-container">
+                    <label for="subject" id="yourmsg">Votre message</label>
+                    <textarea type="text" class="form-data tab-element-modal" id="form-msg" name="subject" aria-labelledby="yourmsg" role="textbox" minlength="50" required aria-required="true"></textarea>
+                  </div>
+              </fieldset>
+                
           
-              <div class="form-data-container" id="form-msg-container">
-                <label for="subject">Votre message</label>
-                <textarea type="text" class="form-data tab-element-modal" id="form-msg" name="subject" aria-label="your message" role="textbox" minlength="50" required></textarea>
-              </div>
-              
-          
-              <input id="form-btn" class="tab-element-modal" type="submit" onclick="validate()" aria-label="send message" value="Envoyer">
+              <input id="form-btn" class="tab-element-modal" type="submit" onclick="validate()" role="button" aria-label="send message" value="Envoyer">
           
             </form>
         </div>
         
-        <div class="form-container" id="form-sent" aria-label="">
+        <div class="form-container" id="form-sent" aria-label="" aria-hidden="true">
 
-            <div class="close tab-element-modal" id="close-confirmation"></div>
+            <div class="close tab-element-confirmation-modal" id="close-confirmation"></div>
             <div id="confirmation-msg">
             </div>
 
@@ -97,13 +102,15 @@
         </figure>
 
         <aside id="total-likes">
-            <p></p>
-            <i class="fas fa-heart media-like"></i>
-            <p id="photographer-price"></p>
+            <p aria-label="nombre total de like"></p>
+            <i class="fas fa-heart media-like" aria-hidden="true"></i>
+            <p id="photographer-price" aria-label="prix du photographe"></p>
         </aside>
     </main>
+
     <script type="module" src="./javascript/photographer.js"></script>
     <script type="module" src="./javascript/contact.js"></script>
     <script type="module" src="./javascript/lightbox.js"></script>
+
 </body>
 </html>

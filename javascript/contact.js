@@ -10,6 +10,7 @@ const closeBtn = document.getElementById("close-form");
 const submitBtn = document.getElementById("form-btn");
 const closeBtnConfirmation = document.getElementById("close-confirmation");
 const confirmationMsgContainer = document.getElementById("confirmation-msg");
+const page = document.querySelector("body");
 
 // display photographer name in form title
 function displayTitle() {
@@ -42,35 +43,51 @@ const formFields = [
   },
 ];
 
+// toogle aria-hidden 
+function toogleAriaHidden(element) {
+  if (element.getAttribute("aria-hidden") == "true") {
+    element.setAttribute("aria-hidden", "false")
+  }
+  else if (element.getAttribute("aria-hidden") == "false") {
+    element.setAttribute("aria-hidden", "true")
+  }
+}
+
 // launch modal
 contactBtn.addEventListener("click", () => {
   displayTitle();
   contactForm.style.display = "block";
   tabindexAdder(".tab-element-modal");
+  toogleAriaHidden(contactForm);
+  toogleAriaHidden(page)
 });
 
 // close modal
 closeBtn.addEventListener("click", () => {
   contactForm.style.display = "none";
   tabindexAdder(".tab-element");
+  toogleAriaHidden(contactForm);
+  toogleAriaHidden(page);
 });
 
+// close confirmation modal
 closeBtnConfirmation.addEventListener("click", () => {
   confirmationModal.style.display = "none";
   tabindexAdder(".tab-element");
+  toogleAriaHidden(confirmationModal);
+  toogleAriaHidden(page);
 });
 
 // error message
 function errorMsgDisplay(formField) {
-  if (
-    !formField.location.validity.valid ||
-    formField.location.validity.valueMissing
-  ) {
+  if (!formField.location.validity.valid || formField.location.validity.valueMissing) {
     formField.container.setAttribute("data-error", formField.errorMsg);
     formField.container.setAttribute("data-error-visible", "true");
+    formField.location.setAttribute("aria-invalid", "true")
   } else {
     formField.container.setAttribute("data-error", "");
     formField.container.setAttribute("data-error-visible", "");
+    formField.location.setAttribute("aria-invalid", "false")
   }
 }
 
@@ -96,7 +113,10 @@ function isValid() {
 function validate() {
   if (isValid()) {
     contactForm.style.display = "none";
+    toogleAriaHidden(contactForm);
     confirmationModal.style.display = "block";
+    tabindexAdder(".tab-element-confirmation-modal");
+    toogleAriaHidden(confirmationModal);
     form.reset();
     confirmationMsgContainer.innerHTML = validationMsg;
   } else {

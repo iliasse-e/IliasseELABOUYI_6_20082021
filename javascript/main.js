@@ -49,7 +49,13 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
         })
       }
 
-      navTags.forEach((element) => element.setAttribute("my-tag", ""));
+      // sets attribute to nav tags
+      navTags.forEach((element) => {
+        element.setAttribute("my-tag", "");
+        element.setAttribute("role", "switch");
+        element.setAttribute("aria-checked", "false");
+        element.setAttribute("aria-label", "filtre " + element.id);
+      });
       // sticks CSS attributes and filter profiles
       navTags.forEach((element) => element.addEventListener("click", () => {
           
@@ -57,8 +63,12 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
         filterByTag(element.id)
         
         if (element.getAttribute("my-tag") !== "true") {
-            navTags.forEach((element) => element.setAttribute("my-tag", "false"));
+            navTags.forEach((element) => {
+              element.setAttribute("my-tag", "false");
+              element.setAttribute("aria-checked", "false")
+            });
             element.setAttribute("my-tag", "true");
+            element.setAttribute("aria-checked", "true")
         }
         
         // resets tag selection

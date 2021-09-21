@@ -15,9 +15,10 @@ export class CreateMedia {
    * @param {Number} price price of the media
    * @param {String} location Name of the file to bring in (ex: "animal_zoo.jpg")
    * @param {String} type Defines if the media is an image or video (takes "image" or "video")
-   * @param {Boolean} liked by default "false", it will be "true" when user is going to "like"
+   * @param {String} alt only for images, alt text
+   * @param {Boolean} liked by default "false", it will be "true" when user is going to "like" the media
    */
-  constructor(id, photographerId, title, tags, likes, date, price, location, type, liked ) {
+  constructor(id, photographerId, title, tags, likes, date, price, location, type, alt, liked ) {
     this.id = id;
     this.photographerId = photographerId;
     this.title = title;
@@ -27,6 +28,7 @@ export class CreateMedia {
     this.price = price;
     this.location = location;
     this.type = type;
+    this.alt=alt;
     this.liked = false;
   }
 
@@ -82,13 +84,17 @@ export class CreateMedia {
     heading.appendChild(likeCounter);
     heading.appendChild(like);
 
-    // attributes a class
+    // sets attributes
     container.classList.add(this.type, "media");
     media.setAttribute("src", `images/${this.photographerId}/${this.location}`);
     media.classList.add("tab-element");
+    if (this.type == "image") { media.setAttribute("alt", this.alt);}
     heading.classList.add("media__heading");
     title.classList.add("media__heading-title");
     likeCounter.classList.add("media__heading-like-counter");
     like.classList.add("fas", "fa-heart", "media-like");
+
+    //sets aria attributes
+    likeCounter.setAttribute("aria-label", "nombre de like")
   }
 }

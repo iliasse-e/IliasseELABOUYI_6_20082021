@@ -34,7 +34,6 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
       // displays photographer profile
       generateProfile(photographers, getPhotographer());
       
-      
       let medias = [];
 
       /**
@@ -44,18 +43,18 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
         for (let media = 0; media < mediasFromJson.length; media++) {
           if (mediasFromJson[media].photographerId == urlParams) {
 
-                medias.push(new CreateMedia(mediasFromJson[media]["id"],
-                mediasFromJson[media]["photographerId"],
-                mediasFromJson[media]["title"],
-                mediasFromJson[media]["tags"],
-                mediasFromJson[media]["likes"],
-                mediasFromJson[media]["date"], 
-                mediasFromJson[media]["price"], 
-                mediasFromJson[media][CreateMedia.getType(mediasFromJson[media])], 
-                CreateMedia.getType(mediasFromJson[media]),
-                medias.length,
+                medias.push(new CreateMedia(
+                  mediasFromJson[media]["id"],
+                  mediasFromJson[media]["photographerId"],
+                  mediasFromJson[media]["title"],
+                  mediasFromJson[media]["tags"],
+                  mediasFromJson[media]["likes"],
+                  mediasFromJson[media]["date"], 
+                  mediasFromJson[media]["price"], 
+                  mediasFromJson[media][CreateMedia.getType(mediasFromJson[media])], 
+                  CreateMedia.getType(mediasFromJson[media]),
+                  mediasFromJson[media]["alt"],
                 ))
-         
           }
           // sorts medias by default
           sortMedias(medias)
@@ -65,7 +64,6 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
       }
 
       createmedias()
-      
       
       // adds sort function on <select>
       document.getElementById("sort-by").addEventListener("change", () => {
@@ -77,8 +75,8 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
         // displays sorted medias
         medias.forEach(media => {media.displayMedia()})
         like();
-        lightbox()
-
+        lightbox();
+        tabindexAdder(".tab-element");
       })
 
       /**

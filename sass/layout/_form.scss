@@ -27,6 +27,10 @@
         flex-direction: column;
         font-size: 1.1em;
 
+        .hidden {
+            display: none;
+        }
+
         #form-title {
             line-height: 60px;
             font-size: 2.5em;
@@ -35,7 +39,7 @@
             white-space: nowrap;
 
             @include tablet {
-                line-height: unset;
+                line-height: 40px;
             }
         }
 
@@ -127,7 +131,7 @@
     color: #a30414;
     display: block;
     margin-top: 7px;
-    margin-bottom: 7px;
+    margin-bottom: 0px;
     text-align: right;
     line-height: 0.3;
     opacity: 0;

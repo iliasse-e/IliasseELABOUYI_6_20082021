@@ -11,11 +11,14 @@ export function lightbox() {
   const lightboxHeading = document.getElementById("lightbox-title")
   const mediaContainer = document.getElementById("lightbox-container")
   const mediasDOM = document.querySelectorAll(".media > img, video")
+  const page = document.querySelector("body")
 
   // close lightbox
   function closeLightbox() {
     lightbox.style.display = "none";
     mediaContainer.removeChild(document.getElementById("lightbox-media"));
+    mediasDOM.forEach(element => element.removeAttribute("aria-hidden"));
+    page.removeAttribute("aria-hidden");
   }
 
   closeBtn.addEventListener("click", closeLightbox);
@@ -30,6 +33,9 @@ export function lightbox() {
     media.setAttribute("id", "lightbox-media");
     media.src = element.src;
     mediaContainer.appendChild(media);
+    page.setAttribute("aria-hidden", "true");
+    console.log(media);
+    media.setAttribute("aria-hidden", "false");
     lightboxHeading.innerHTML = element.nextSibling.firstChild.innerHTML;
     let e = index;
 
@@ -42,6 +48,7 @@ export function lightbox() {
         nextMedia.src = mediasDOM[e +1].src;
         mediaContainer.appendChild(nextMedia);
         nextMedia.setAttribute("id", "lightbox-media");
+        nextMedia.setAttribute("aria-hidden", "false");
         lightboxHeading.innerHTML = mediasDOM[e +1].nextSibling.firstChild.innerHTML;
         e++
       }
@@ -52,6 +59,7 @@ export function lightbox() {
         nextMedia.src = mediasDOM[e].src;
         mediaContainer.appendChild(nextMedia);
         nextMedia.setAttribute("id", "lightbox-media");
+        nextMedia.setAttribute("aria-hidden", "false");
         lightboxHeading.innerHTML = mediasDOM[e].nextSibling.firstChild.innerHTML;
         e++
       }
@@ -62,20 +70,22 @@ export function lightbox() {
       
       if (mediasDOM[e - 1] !== undefined) {
         document.getElementById("lightbox-media").remove()
-        const nextMedia = document.createElement(mediasDOM[e -1].localName);
-        nextMedia.src = mediasDOM[e -1].src;
-        mediaContainer.appendChild(nextMedia);
-        nextMedia.setAttribute("id", "lightbox-media");
+        const prevMedia = document.createElement(mediasDOM[e -1].localName);
+        prevMedia.src = mediasDOM[e -1].src;
+        mediaContainer.appendChild(prevMedia);
+        prevMedia.setAttribute("id", "lightbox-media");
+        prevMedia.setAttribute("aria-hidden", "false");
         lightboxHeading.innerHTML = mediasDOM[e -1].nextSibling.firstChild.innerHTML;
         e--
       }
       else {
         e = mediasDOM.length - 1;
         document.getElementById("lightbox-media").remove();
-        const nextMedia = document.createElement(mediasDOM[e].localName);
-        nextMedia.src = mediasDOM[e].src;
-        mediaContainer.appendChild(nextMedia);
-        nextMedia.setAttribute("id", "lightbox-media");
+        const prevMedia = document.createElement(mediasDOM[e].localName);
+        prevMedia.src = mediasDOM[e].src;
+        mediaContainer.appendChild(prevMedia);
+        prevMedia.setAttribute("id", "lightbox-media");
+        prevMedia.setAttribute("aria-hidden", "false");
         lightboxHeading.innerHTML = mediasDOM[e].nextSibling.firstChild.innerHTML;
         e--
       }
