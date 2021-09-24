@@ -59,24 +59,36 @@ contactBtn.addEventListener("click", () => {
   contactForm.style.display = "block";
   tabindexAdder(".tab-element-modal");
   toogleAriaHidden(contactForm);
-  toogleAriaHidden(page)
-});
+  toogleAriaHidden(page);
+})
 
 // close modal
-closeBtn.addEventListener("click", () => {
+function closeContactModal() {
   contactForm.style.display = "none";
   tabindexAdder(".tab-element");
   toogleAriaHidden(contactForm);
   toogleAriaHidden(page);
-});
+}
+
+closeBtn.addEventListener("click", closeContactModal);
 
 // close confirmation modal
-closeBtnConfirmation.addEventListener("click", () => {
+function closeConfirmationModal() {
   confirmationModal.style.display = "none";
   tabindexAdder(".tab-element");
   toogleAriaHidden(confirmationModal);
   toogleAriaHidden(page);
-});
+}
+
+closeBtnConfirmation.addEventListener("click", closeConfirmationModal);
+
+// close both modals on esc keyboard                      
+window.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    closeContactModal()
+    closeConfirmationModal()
+  }
+})
 
 // error message
 function errorMsgDisplay(formField) {
@@ -95,7 +107,7 @@ formFields.forEach((field) => {
   field.location.addEventListener("change", () => {
     errorMsgDisplay(field);
   });
-});
+})
 
 // validation
 const validationMsg = "Merci, votre message a bien été envoyé";
@@ -129,3 +141,4 @@ function validate() {
 }
 
 submitBtn.onclick = validate;
+

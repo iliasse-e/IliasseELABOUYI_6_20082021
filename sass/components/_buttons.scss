@@ -12,11 +12,13 @@
     font-family: 'DM Sans', sans-serif;
     transition: 200ms;
 
-    &:hover {
+    &:hover, &:focus {
+        background-color: $form-color;
         transition: 500ms;
-        transform: scale(105%);
+        transform: scale(102%);
         filter: brightness(120%);
         cursor: pointer;
+        color: black;
     }
 
     @include tablet {
@@ -28,5 +30,26 @@
         padding: 5px 10px;
         height: auto;
         width: 40%;
+    }
+}
+
+// Passer au contenu btn
+
+#link-to-main {
+    @extend .contact;
+    position: fixed;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    left: 10%;
+    right: 10%;
+    top: 2%;
+    padding: 5px 0px;
+    height: 20px;
+    width: 180px;
+    text-decoration: none;
+    opacity: 0;
+    &:hover, &:focus {
+        opacity: 1;
     }
 }

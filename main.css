@@ -78,7 +78,7 @@ html {
 }
 
 /* Components */
-.contact, .form-container #form-btn, .form-container #ok-btn {
+.contact, .form-container #form-btn, .form-container #ok-btn, #link-to-main {
   order: 2;
   height: 70px;
   background-color: #901C1C;
@@ -92,14 +92,16 @@ html {
   font-family: "DM Sans", sans-serif;
   transition: 200ms;
 }
-.contact:hover, .form-container #form-btn:hover, .form-container #ok-btn:hover {
+.contact:hover, .form-container #form-btn:hover, .form-container #ok-btn:hover, #link-to-main:hover, .contact:focus, .form-container #form-btn:focus, .form-container #ok-btn:focus, #link-to-main:focus {
+  background-color: #DB8876;
   transition: 500ms;
-  transform: scale(105%);
+  transform: scale(102%);
   filter: brightness(120%);
   cursor: pointer;
+  color: black;
 }
 @media (max-width: 769px) {
-  .contact, .form-container #form-btn, .form-container #ok-btn {
+  .contact, .form-container #form-btn, .form-container #ok-btn, #link-to-main {
     position: fixed;
     margin: auto;
     left: 10%;
@@ -109,6 +111,24 @@ html {
     height: auto;
     width: 40%;
   }
+}
+
+#link-to-main {
+  position: fixed;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  left: 10%;
+  right: 10%;
+  top: 2%;
+  padding: 5px 0px;
+  height: 20px;
+  width: 180px;
+  text-decoration: none;
+  opacity: 0;
+}
+#link-to-main:hover, #link-to-main:focus {
+  opacity: 1;
 }
 
 .sort-by, .sort-by__option {

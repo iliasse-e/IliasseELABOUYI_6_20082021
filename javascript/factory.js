@@ -95,6 +95,6 @@ export class CreateMedia {
     like.classList.add("fas", "fa-heart", "media-like");
 
     //sets aria attributes
-    likeCounter.setAttribute("aria-label", "nombre de like")
+    likeCounter.setAttribute("aria-label", "nombre de like :" + this.likes)
   }
 }

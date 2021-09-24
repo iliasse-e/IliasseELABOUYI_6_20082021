@@ -1,5 +1,6 @@
 import { generateProfile } from "./profile.js";
 import { tabindexAdder } from "./tabindex.js";
+import { FilterCreator } from "./filters.js"
 
 // import (photographer profil) json data
 fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.json')
@@ -19,16 +20,18 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
           }
       };
 
-      // displays nav #tags 
-      tags.forEach((element) => {
-        const tag = document.createElement("li");
-        document.querySelector(".nav-tag-list").appendChild(tag);
-        const tagnode = document.createTextNode("#"+element);
-        tag.appendChild(tagnode);
-        tag.classList.add("tag", "tab-element");
-        tag.setAttribute("id", element);
+      let filters = [];
+      for (let photographer = 0; photographer < photographers.length; photographer++ ) {
+        for (let tag = 0; tag < photographers[photographer].tags.length; tag++) {
+            if (!filters.some(filter => filter["name"] === photographers[photographer].tags[tag])) {
+                filters.push(new FilterCreator(photographers[photographer].tags[tag], ["Mimi Keel", "Nabeel Bradford"], "tag tab-element " + photographers[photographer].tags[tag]))
+            }
         }
-      )
+      };
+
+      // displays filters in navigation and under photographer profile
+      FilterCreator.displayTag(filters);
+      
 
       for (let i = 0; i < photographers.length; i++ ) {
         generateProfile(photographers, i)
@@ -38,48 +41,11 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
       let navTags =  document.querySelectorAll(".nav-tag-list > .tag"); 
       const photographerProfiles = document.querySelectorAll(".photographer-profile");
 
-      function filterByTag(id) {
-        photographerProfiles.forEach((photographer) => {
-            if (!photographer.getAttribute("class").includes(id)) {
-                photographer.setAttribute("tag-selected", "false")
-            }
-            else {
-                photographer.setAttribute("tag-selected", "true")
-            }
-        })
-      }
+      // filters in and off the photographer chosen when filter clicked
+      FilterCreator.tagToggle(navTags, photographerProfiles)
 
-      // sets attribute to nav tags
-      navTags.forEach((element) => {
-        element.setAttribute("my-tag", "");
-        element.setAttribute("role", "switch");
-        element.setAttribute("aria-checked", "false");
-        element.setAttribute("aria-label", "filtre " + element.id);
-      });
-      // sticks CSS attributes and filter profiles
-      navTags.forEach((element) => element.addEventListener("click", () => {
-          
-        // displays filtered profiles
-        filterByTag(element.id)
-        
-        if (element.getAttribute("my-tag") !== "true") {
-            navTags.forEach((element) => {
-              element.setAttribute("my-tag", "false");
-              element.setAttribute("aria-checked", "false")
-            });
-            element.setAttribute("my-tag", "true");
-            element.setAttribute("aria-checked", "true")
-        }
-        
-        // resets tag selection
-        else {
-                navTags.forEach((element) => element.setAttribute("my-tag", ""));
-                photographerProfiles.forEach((photographer) => {
-                    photographer.removeAttribute("tag-selected")
-                })
-        }
-      }))
 
+      // cleans the DOM up and organize an order for the navigation by tab kayboard
       tabindexAdder(".tab-element");
 
 

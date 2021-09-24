@@ -1,7 +1,7 @@
 /**
  * Sets a tabindex for all elements of a attribute and joins a keyboard listener
  * (class attribute has to be set in HTML file first)
- * For a modal, it's recommanded to set the function up at launch and recall with different param at the closing
+ * For a modal, highly recommanded to use the function twice : 1- To set the function up at launch 2- On the closing with different params
  * @param {string} attribute tag of the HTML targeted elements (ex: ".tab-element")
  */
 
@@ -19,9 +19,8 @@ export function tabindexAdder(attribute) {
     element.setAttribute("tabindex", index + 1);
   });
 
- 
+  // recycles focus on Tab keyboard
   resetTabFocus();
-
 
   /* keyboard Enter listener */
   tabElements.forEach((element) =>  element.addEventListener("keyup", function(event) {
@@ -37,6 +36,7 @@ export function tabindexAdder(attribute) {
 
 /**
  * Cycles keyboard focus from last element to first element and vice versa
+ * It able to bring to focus back on the element instead of losing it around the window
  */
 function resetTabFocus() {
   const allElements = document.querySelectorAll("[tabindex]");
@@ -49,7 +49,7 @@ function resetTabFocus() {
 
   // last tabindex sets focus to first tab element on keybord event
   activeElement[activeElement.length-1].addEventListener("keydown", function(event) {
-    if (event.keyCode === 9) {
+    if (event.keyCode === 9 && !event.shiftKey) {
       event.preventDefault();
       activeElement[0].focus()
     }
@@ -58,6 +58,7 @@ function resetTabFocus() {
   // last tabindex sets focus to first tab element on keybord event
   activeElement[0].addEventListener("keydown", function(event) {
     if (event.shiftKey && event.keyCode === 9) {
+      event.preventDefault();
       activeElement[activeElement.length-1].focus();
       console.log(activeElement[activeElement.length-1]);
     }

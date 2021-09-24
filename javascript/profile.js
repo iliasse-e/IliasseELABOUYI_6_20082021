@@ -61,14 +61,15 @@ export function generateProfile(array, photographerIndex) {
     // sets attributes
     container.classList.add("photographer-profile");
     image.setAttribute("src", "images/Photographers ID Photos/" + array[photographerIndex].portrait);
-    image.setAttribute("alt", "photo de profile de " + array[photographerIndex].name + " - Page photographe")
+    image.setAttribute("alt", "photo de profile de " + array[photographerIndex].name + " - Page photographe");
+    image.setAttribute("role", "link");
     image.classList.add("photographer-profile__image", "tab-element");
     heading.classList.add("photographer-profile__heading");
     adress.classList.add("photographer-profile__location");
     tagline.classList.add("photographer-profile__tagline");
     price.classList.add("photographer-profile__price");
     tags.classList.add("tag-list");
-    link.setAttribute("href", "https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/photographer.html"+"?="+array[photographerIndex].id);
+    link.setAttribute("href", "http://127.0.0.1:5500/photographer.html"+"?="+array[photographerIndex].id);
     headinglink.setAttribute("href", "https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/photographer.html"+"?="+array[photographerIndex].id);
   
     array[photographerIndex].tags.forEach(tag => {
@@ -82,12 +83,16 @@ export function generateProfile(array, photographerIndex) {
     heading.setAttribute("aria-level", "1");
     adress.setAttribute("role", "heading");
     adress.setAttribute("aria-level", "2");
+    adress.setAttribute("aria-label", "ville du photographe :" + array[photographerIndex].city)
     tagline.setAttribute("role", "heading");
     tagline.setAttribute("aria-level", "3");
+    tagline.setAttribute("aria-label", "citation du photographe :" + array[photographerIndex].tagline)
     price.setAttribute("role", "heading");
     price.setAttribute("aria-level", "4");
+    price.setAttribute("aria-label", "prix du photographe " + array[photographerIndex].price + "euros par jour")
     tags.setAttribute("role", "heading");
     tags.setAttribute("aria-level", "5");
+    tags.setAttribute("aria-label", "thèmes du photographe");
 
     
     // sets tags
@@ -97,6 +102,7 @@ export function generateProfile(array, photographerIndex) {
       tag.appendChild(tagnode);
       tags.appendChild(tag);
       tag.classList.add("tag")
+      tag.setAttribute("aria-label", element);
     });
   
     // add price if page allows it

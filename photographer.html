@@ -15,7 +15,7 @@
 
     <header class="photographer_header">
         <div class="banner">
-            <a id="backhome" class="back-home-link tab-element" aria-label="retour à la page d'accueil" href="index.html">
+            <a id="backhome" class="back-home-link tab-element" alt="Fiesh eye page d'accueil" aria-label="retour à la page d'accueil" href="index.html">
                 <img src="./svg/logo.svg" aria-labelledby="backhome" role="button">
             </a>
         </div>
@@ -46,33 +46,28 @@
             <div class="close tab-element-modal" id="close-form" aria-label="fermer le formulaire de contact"></div>
             <form onsubmit="return false">
 
-              <fieldset>
-                <legend class="hidden">Vos coordonées</legend>
                 <p id="form-title">Contactez-moi </p>
           
                 <div class="form-data-container" id="form-firstname-container">
                     <label id="firstname" for="first-name">Prénom</label>
-                    <input class="form-data tab-element-modal" type="text" id="form-firstname" aria-labelledby="firstname" role="text" name="firstname" pattern="^[a-zA-Z ]*$" required minlength="2" aria-required="true">
+                    <input class="form-data tab-element-modal" type="text" id="form-firstname" aria-labelledby="firstname" name="firstname" pattern="^[a-zA-Z ]*$" required minlength="2" aria-required="true">
                 </div>
                 
                 <div class="form-data-container" id="form-lastname-container">
                     <label for="last-name" id="lastname">Nom</label>
-                    <input class="form-data tab-element-modal" type="text" id="form-lastname" aria-labelledby="lastname" role="text" name="lastname" pattern="^[a-zA-Z ]*$" required minlength="2" aria-required="true">
+                    <input class="form-data tab-element-modal" type="text" id="form-lastname" aria-labelledby="lastname" name="lastname" pattern="^[a-zA-Z ]*$" required minlength="2" aria-required="true">
                 </div>
                 
                 <div class="form-data-container" id="form-email-container">
                   <label for="email" id="email">Email</label>
-                  <input class="form-data tab-element-modal" type="email" id="form-email" name="email" aria-labelledby="email" role="text" required aria-required="true">
+                  <input class="form-data tab-element-modal" type="email" id="form-email" name="email" aria-labelledby="email" required aria-required="true">
                 </div>
-              </fieldset>
 
-              <fieldset>
-                <legend class="hidden">Votre message</legend>
+              
                 <div class="form-data-container" id="form-msg-container">
                     <label for="subject" id="yourmsg">Votre message</label>
-                    <textarea type="text" class="form-data tab-element-modal" id="form-msg" name="subject" aria-labelledby="yourmsg" role="textbox" minlength="50" required aria-required="true"></textarea>
+                    <textarea type="textbox" class="form-data tab-element-modal" id="form-msg" name="subject" aria-labelledby="yourmsg" minlength="50" required aria-required="true"></textarea>
                   </div>
-              </fieldset>
                 
           
               <input id="form-btn" class="tab-element-modal" type="submit" onclick="validate()" role="button" aria-label="send message" value="Envoyer">
