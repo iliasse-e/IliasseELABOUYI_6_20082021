@@ -51,7 +51,7 @@
    */
   static tagToggle(filters, photographers) {
 
-    const homeUrl = new URL("https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/");
+    const homeUrl = new URL("https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/index.html");
     let search = homeUrl.search;
 
     // sticks CSS attributes and filter profiles
