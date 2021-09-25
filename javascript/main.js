@@ -1,6 +1,6 @@
 import { generateProfile } from "./profile.js";
 import { tabindexAdder } from "./tabindex.js";
-import { FilterCreator } from "./filters.js"
+import { Filter } from "./filters.js"
 
 // import (photographer profil) json data
 fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.json')
@@ -10,40 +10,45 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
     response.json().then(data => {
       let photographers = data["photographers"];
 
-      // gathers available tags
-      let tags = [];
-      for (let photographer = 0; photographer < photographers.length; photographer++ ) {
-          for (let tag = 0; tag < photographers[photographer].tags.length; tag++) {
-              if (!tags.includes(photographers[photographer].tags[tag])) {
-                  tags.push(photographers[photographer].tags[tag])
-              }
-          }
-      };
-
+      // creates and gathers filter Objects in an array
       let filters = [];
       for (let photographer = 0; photographer < photographers.length; photographer++ ) {
         for (let tag = 0; tag < photographers[photographer].tags.length; tag++) {
             if (!filters.some(filter => filter["name"] === photographers[photographer].tags[tag])) {
-                filters.push(new FilterCreator(photographers[photographer].tags[tag], ["Mimi Keel", "Nabeel Bradford"], "tag tab-element " + photographers[photographer].tags[tag]))
+                filters.push(new Filter(photographers[photographer].tags[tag], [], "tag tab-element " + photographers[photographer].tags[tag]))
             }
         }
       };
 
-      // displays filters in navigation and under photographer profile
-      FilterCreator.displayTag(filters);
-      
+      // fill each filter Objects with its photographers
+      filters.forEach((filter) => {
+        photographers.forEach((photographer, index) => {
+          if (photographer.tags.includes(filter.name)) {
+            filter.photographers.push(photographer.name)
+          }
+         })
+      });
 
-      for (let i = 0; i < photographers.length; i++ ) {
-        generateProfile(photographers, i)
-      }
 
-      // DOM Elements
-      let navTags =  document.querySelectorAll(".nav-tag-list > .tag"); 
+      // displays all photographer profiles available
+      for (let i = 0; i < photographers.length; i++) { generateProfile(photographers, i) }
+
+      // displays filters in navigation
+      Filter.displayTag(filters);
+
+      // DOM Elements (navigation tags and photographer profiles)
+      let navTags =  document.querySelectorAll(".nav-tag-list > .tag");
+      let profileTags = document.querySelectorAll(".profile-tag-list > .tag");
       const photographerProfiles = document.querySelectorAll(".photographer-profile");
 
-      // filters in and off the photographer chosen when filter clicked
-      FilterCreator.tagToggle(navTags, photographerProfiles)
+      // displays filter tags under photographer profile
+      Filter.displayProfileTags(photographers, filters);
 
+      // filters in and off the photographers chosen when filter tag switched
+      Filter.tagToggle(navTags, photographerProfiles);
+
+      // filters from profile card
+      Filter.profileFilters(profileTags);
 
       // cleans the DOM up and organize an order for the navigation by tab kayboard
       tabindexAdder(".tab-element");

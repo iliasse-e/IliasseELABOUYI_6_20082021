@@ -92,7 +92,8 @@ export class CreateMedia {
     heading.classList.add("media__heading");
     title.classList.add("media__heading-title");
     likeCounter.classList.add("media__heading-like-counter");
-    like.classList.add("fas", "fa-heart", "media-like");
+    like.classList.add("fas", "fa-heart", "media-like", "tab-element");
+    like.setAttribute("aria-label", "boutton like");
 
     //sets aria attributes
     likeCounter.setAttribute("aria-label", "nombre de like :" + this.likes)

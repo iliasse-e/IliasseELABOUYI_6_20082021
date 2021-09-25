@@ -68,8 +68,9 @@ export function generateProfile(array, photographerIndex) {
     adress.classList.add("photographer-profile__location");
     tagline.classList.add("photographer-profile__tagline");
     price.classList.add("photographer-profile__price");
-    tags.classList.add("tag-list");
-    link.setAttribute("href", "http://127.0.0.1:5500/photographer.html"+"?="+array[photographerIndex].id);
+    tags.classList.add("tag-list", "profile-tag-list");
+    tags.setAttribute("photographer", array[photographerIndex].name);
+    link.setAttribute("href", "https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/photographer.html"+"?="+array[photographerIndex].id);
     headinglink.setAttribute("href", "https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/photographer.html"+"?="+array[photographerIndex].id);
   
     array[photographerIndex].tags.forEach(tag => {
@@ -95,16 +96,6 @@ export function generateProfile(array, photographerIndex) {
     tags.setAttribute("aria-label", "thèmes du photographe");
 
     
-    // sets tags
-    array[photographerIndex].tags.forEach(element => { 
-      const tag = document.createElement("li");
-      const tagnode = document.createTextNode("#"+element);
-      tag.appendChild(tagnode);
-      tags.appendChild(tag);
-      tag.classList.add("tag")
-      tag.setAttribute("aria-label", element);
-    });
-  
     // add price if page allows it
     if (document.getElementById("photographer-price")) {
       document.getElementById("photographer-price").innerHTML = array[photographerIndex].price + "€/jour"
