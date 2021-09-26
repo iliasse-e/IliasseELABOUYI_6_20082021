@@ -12,10 +12,7 @@
     this.classname = classname;
   }
 
-  // adds parameter in url
-
-
-  // adds filter tags in DOM
+  // adds filter tags in navigation 
   static displayTag(filters) {
     filters.forEach((filter) => {
       const tag = document.createElement("li");
@@ -28,7 +25,7 @@
     )
   }
 
-  // adds filter tags in profile card DOM
+  // adds filter tags in photographer profile cards
   static displayProfileTags(photographers, filters) {
     photographers.forEach((photographer, index) => {
       filters.forEach((filter) => {
@@ -38,23 +35,24 @@
           const tagnode = document.createTextNode("#"+filter.name);
           tag.appendChild(tagnode);
           tag.className = filters[index].classname;
-          tag.setAttribute("filter", filters[index].name);
+          tag.setAttribute("filter", filter.name);
         }
       })
     })
   }
 
   /**
-   * Toogles on and off the photographers filtered by tag
+   * Displays on and off photographers profile cards filtered by tag
    * @param {Array} filters array of DOM elements (filters already displayed)
    * @param {Array} photographers array of DOM elements (photographers already displayed) 
    */
   static tagToggle(filters, photographers) {
 
-    const homeUrl = new URL("https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/index.html");
+    const homeUrl = new URL(window.location);
+    let urlParams = new URLSearchParams(homeUrl.href);
     let search = homeUrl.search;
 
-    // sticks CSS attributes and filter profiles
+    // sticks CSS attributes and filter profiles page
     filters.forEach((filter) => filter.addEventListener("click", () => {
       
       if (filter.getAttribute("my-tag") !== "true") {
@@ -65,6 +63,7 @@
           filter.setAttribute("my-tag", "true");
           filter.setAttribute("aria-checked", "true")
           search = "?filter=" +filter.getAttribute("filter");
+          window.history.pushState({}, "", search)
       }
       
       // resets tag selection
@@ -74,15 +73,17 @@
               photographer.removeAttribute("tag-selected")
             })
             search = "";
+            window.history.replaceState({}, "", "index.html")
       }
 
+      // filters page out of url params
       Filter.filterByTag(search.substring(8), photographers);
-
     }))
   }
 
   /**
    * Displays filtered profiles
+   * This function is made to be used inside @function tagToggle
    * @param {Array} id identifier of filter
    * @param {Array} photographers array of photographers already displayed on DOM
    */
@@ -98,16 +99,24 @@
     })
   }
 
-  static profileFilters(profileFilters) {
+  /**
+   * Adds filter functionality for photographer card tags
+   * @param {Array} profileFilters Array of filter tags inside photographer profile cards 
+   */
+  static profileFilterTags(profileFilters) {
 
     profileFilters.forEach((filter) => filter.addEventListener("click", () => {
-      console.log("tag");
       const tag = filter.getAttribute("filter");
       document.querySelector(".nav-tag-list > ." + tag).click()
     })
-    
     )
+  }
 
+  // add filter when user is brought up home after photographer.html tag click
+  static urlParamCheck() {
+    const url = window.location;
+    const searchParam = url.search.substring(8);
+    document.querySelector(".nav-tag-list > ." + searchParam).click()
   }
 
 

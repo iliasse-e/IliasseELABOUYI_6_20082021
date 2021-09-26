@@ -26,7 +26,7 @@
     justify-content: start;
     margin: 50px;
     
-    figure {
+    figure a, figure > h2{
         pointer-events: none;
     }
     

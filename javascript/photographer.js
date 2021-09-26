@@ -33,6 +33,27 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
 
       // displays photographer profile
       generateProfile(photographers, getPhotographer());
+
+      // displays profile page filters
+      const tagContainer = document.querySelector("photographer-profile, .tag-list");
+      const currentDomPhotographer = tagContainer.getAttribute("photographer");
+      const tags = photographers.find(photographer => photographer["name"] === currentDomPhotographer).tags;
+
+      tags.forEach((element) => {
+
+        const tag = document.createElement("li");
+          tagContainer.appendChild(tag);
+          const tagnode = document.createTextNode("#"+element);
+          tag.appendChild(tagnode);
+          tag.className = "tag tab-element "+element;
+          tag.setAttribute("filter", element);
+          tag.setAttribute("role", "link");
+          tag.addEventListener("click", () => {
+            console.log(tag)
+            window.location = "http://127.0.0.1:5501/index.html?filter=" + tag.getAttribute("filter")
+          })
+
+      })
       
       let medias = [];
 
@@ -109,6 +130,10 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
       tabindexAdder(".tab-element");
 
       lightbox();
+
+      document.querySelectorAll("i").forEach((i) => {
+        i.setAttribute("aria-hidden", "false")
+      })
 
     })
   }

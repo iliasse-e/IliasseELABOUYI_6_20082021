@@ -48,6 +48,17 @@ export function lightbox() {
     media.classList.add("tab-element-lightbox");
     nextBtn.classList.add("tab-element-lightbox");
     prevBtn.classList.add("tab-element-lightbox");
+    
+    // aria labels
+    lightbox.setAttribute("aria-label", "image en plein écran");
+    lightbox.setAttribute("aria-live", "polite")
+    lightbox.setAttribute("role", "dialog");
+    closeBtn.setAttribute("aria-label", "fenêtre fermée");
+    prevBtn.setAttribute("aria-label", "média précédent");
+    prevBtn.setAttribute("role", "button");
+    prevBtn.setAttribute("aria-labelledby", "lightbox")
+    nextBtn.setAttribute("aria-label", "média suivant");
+    
     tabindexAdder(".tab-element-lightbox");
 
     // next media

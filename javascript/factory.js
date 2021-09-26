@@ -64,6 +64,7 @@ export class CreateMedia {
     const heading = document.createElement("figcaption");
     const title = document.createElement("p");
     const likeCounter = document.createElement("p");
+    const likeContainer = document.createElement("a");
     const like = document.createElement("i");
 
     // creates a text to attach to the HTML element
@@ -82,7 +83,8 @@ export class CreateMedia {
     container.appendChild(heading);
     heading.appendChild(title);
     heading.appendChild(likeCounter);
-    heading.appendChild(like);
+    heading.appendChild(likeContainer);
+    likeContainer.appendChild(like);
 
     // sets attributes
     container.classList.add(this.type, "media");
@@ -92,8 +94,10 @@ export class CreateMedia {
     heading.classList.add("media__heading");
     title.classList.add("media__heading-title");
     likeCounter.classList.add("media__heading-like-counter");
-    like.classList.add("fas", "fa-heart", "media-like", "tab-element");
-    like.setAttribute("aria-label", "boutton like");
+    likeContainer.classList.add("tab-element", "media-like");
+    like.classList.add("fas", "fa-heart");
+    likeContainer.setAttribute("aria-label", "like");
+    likeContainer.setAttribute("role", "button");
 
     //sets aria attributes
     likeCounter.setAttribute("aria-label", "nombre de like :" + this.likes)

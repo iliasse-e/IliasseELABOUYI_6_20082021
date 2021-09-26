@@ -30,7 +30,7 @@ export function generateProfile(array, photographerIndex) {
     const tagline = document.createElement("p");
     const price = document.createElement("p");
     const tags = document.createElement("ul");
-    const link = document.createElement("a");
+    const link = document.createElement("div");
     const headinglink = document.createElement("a");
   
     // creates a text to attach to the HTML element
@@ -52,7 +52,7 @@ export function generateProfile(array, photographerIndex) {
     link.appendChild(image);
     container.appendChild(headingContainer);
     headingContainer.appendChild(headinglink);
-    headinglink.appendChild(heading);
+    link.appendChild(heading);
     headingContainer.appendChild(adress);
     headingContainer.appendChild(tagline);
     headingContainer.appendChild(price);
@@ -63,15 +63,15 @@ export function generateProfile(array, photographerIndex) {
     image.setAttribute("src", "images/Photographers ID Photos/" + array[photographerIndex].portrait);
     image.setAttribute("alt", "photo de profile de " + array[photographerIndex].name + " - Page photographe");
     image.setAttribute("role", "link");
-    image.classList.add("photographer-profile__image", "tab-element");
+    image.classList.add("photographer-profile__image");
     heading.classList.add("photographer-profile__heading");
     adress.classList.add("photographer-profile__location");
     tagline.classList.add("photographer-profile__tagline");
     price.classList.add("photographer-profile__price");
     tags.classList.add("tag-list", "profile-tag-list");
     tags.setAttribute("photographer", array[photographerIndex].name);
-    link.setAttribute("href", "https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/photographer.html"+"?="+array[photographerIndex].id);
-    headinglink.setAttribute("href", "https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/photographer.html"+"?="+array[photographerIndex].id);
+    link.classList.add("tab-element");
+    link.setAttribute("href", "http://127.0.0.1:5501/photographer.html"+"?="+array[photographerIndex].id);
   
     array[photographerIndex].tags.forEach(tag => {
       container.classList.add(tag)

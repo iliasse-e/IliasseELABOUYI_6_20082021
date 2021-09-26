@@ -29,14 +29,13 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
          })
       });
 
-
       // displays all photographer profiles available
       for (let i = 0; i < photographers.length; i++) { generateProfile(photographers, i) }
 
       // displays filters in navigation
       Filter.displayTag(filters);
 
-      // DOM Elements (navigation tags and photographer profiles)
+      // DOM Elements (navigation tags and photographer profile cards)
       let navTags =  document.querySelectorAll(".nav-tag-list > .tag");
       let profileTags = document.querySelectorAll(".profile-tag-list > .tag");
       const photographerProfiles = document.querySelectorAll(".photographer-profile");
@@ -48,10 +47,15 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
       Filter.tagToggle(navTags, photographerProfiles);
 
       // filters from profile card
-      Filter.profileFilters(profileTags);
-
-      // cleans the DOM up and organize an order for the navigation by tab kayboard
+      Filter.profileFilterTags(document.querySelectorAll(".profile-tag-list > .tag"));
+     
+      // cleans the DOM up and organize an order for the navigation by tab keyboard
       tabindexAdder(".tab-element");
+
+      // toggles filter tag clicked on photographer.html
+      Filter.urlParamCheck();
+
+      
 
 
     })

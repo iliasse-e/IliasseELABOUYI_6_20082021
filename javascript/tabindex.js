@@ -10,13 +10,16 @@ export function tabindexAdder(attribute) {
   /* removes unecessary tabindex */
   const links = document.querySelectorAll("a, button, select, link, input, textarea, [tabindex]");
   for( let i = 0, j =  links.length; i < j; i++ ) {
-      links[i].setAttribute( 'tabindex', '-1' );
+      links[i].setAttribute("tabindex", "-1");
   };
+  console.log("tabindex")
 
   /* sets tabindex */
   let tabElements = document.querySelectorAll(attribute);
   tabElements.forEach((element, index) => {
     element.setAttribute("tabindex", index + 1);
+    element.removeAttribute("aria-hidden");
+    console.log("aria-hidden")
   });
 
   // recycles focus on Tab keyboard

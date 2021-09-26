@@ -50,7 +50,7 @@ body {
   }
 }
 
-*:focus {
+*:focus-visible {
   outline: solid orange;
 }
 
@@ -212,7 +212,7 @@ html {
   justify-content: start;
   margin: 50px;
 }
-.profile-container figure {
+.profile-container figure a, .profile-container figure > h2 {
   pointer-events: none;
 }
 .profile-container img {
@@ -413,6 +413,7 @@ html {
   color: #901C1C;
   font-weight: 500;
   font-size: 0.9em;
+  cursor: pointer;
   transition: 500ms;
 }
 
