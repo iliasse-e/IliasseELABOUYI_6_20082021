@@ -60,7 +60,6 @@ contactBtn.addEventListener("click", () => {
   tabindexAdder(".tab-element-modal");
   toogleAriaHidden(contactForm);
   toogleAriaHidden(page);
-  contactForm.focus()
 })
 
 // close modal

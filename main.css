@@ -317,6 +317,9 @@ html {
   padding: 5px;
   text-decoration: none;
 }
+.photographer-profile .link {
+  cursor: pointer;
+}
 .photographer-profile__image {
   width: 200px;
   border-radius: 200px;

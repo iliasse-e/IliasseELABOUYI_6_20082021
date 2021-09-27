@@ -2,8 +2,10 @@ import { generateProfile } from "./profile.js";
 import { tabindexAdder } from "./tabindex.js";
 import { Filter } from "./filters.js"
 
+export const url = "https://iliasse-e.github.io/IliasseELABOUYI_6_20082021";
+
 // import (photographer profil) json data
-fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.json')
+fetch(url+'/JSON/photographer.json')
 .then(function (response) {
   console.log("Je suis la");
   if (response.ok) {

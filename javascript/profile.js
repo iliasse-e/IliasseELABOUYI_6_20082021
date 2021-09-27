@@ -4,6 +4,8 @@
   * @param {Number} photographerIndex photographer id, highly suggested to call "getPhotographer()"
   */
 
+import { url } from "./main";
+
 export function generateProfile(array, photographerIndex) {
 
   // error msg if photographer not found 
@@ -70,8 +72,10 @@ export function generateProfile(array, photographerIndex) {
     price.classList.add("photographer-profile__price");
     tags.classList.add("tag-list", "profile-tag-list");
     tags.setAttribute("photographer", array[photographerIndex].name);
-    link.classList.add("tab-element");
-    link.setAttribute("href", "http://127.0.0.1:5501/photographer.html"+"?="+array[photographerIndex].id);
+    link.classList.add("tab-element", "link");
+    link.addEventListener("click", () => {
+      window.location = url + "/photographer.html"+"?="+array[photographerIndex].id;
+    })
   
     array[photographerIndex].tags.forEach(tag => {
       container.classList.add(tag)

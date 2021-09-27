@@ -3,9 +3,10 @@ import { CreateMedia } from "./factory.js";
 import { generateProfile } from "./profile.js";
 import { tabindexAdder } from "./tabindex.js";
 import { like, totalLikeCounter } from "./like.js"
+import { url } from "./main.js";
 
 //imports photographers
-fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.json')
+fetch(url+'/JSON/photographer.json')
 .then(function (response) {
   console.log("Je suis la");
   if (response.ok) {
@@ -50,7 +51,7 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
           tag.setAttribute("role", "link");
           tag.addEventListener("click", () => {
             console.log(tag)
-            window.location = "http://127.0.0.1:5501/index.html?filter=" + tag.getAttribute("filter")
+            window.location = url + "/index.html?filter=" + tag.getAttribute("filter")
           })
 
       })
@@ -131,9 +132,7 @@ fetch('https://iliasse-e.github.io/IliasseELABOUYI_6_20082021/JSON/photographer.
 
       lightbox();
 
-      document.querySelectorAll("i").forEach((i) => {
-        i.setAttribute("aria-hidden", "false")
-      })
+      
 
     })
   }
