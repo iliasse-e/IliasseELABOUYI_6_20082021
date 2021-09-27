@@ -3,7 +3,8 @@ import { CreateMedia } from "./factory.js";
 import { generateProfile } from "./profile.js";
 import { tabindexAdder } from "./tabindex.js";
 import { like, totalLikeCounter } from "./like.js"
-import { url } from "./main.js";
+
+const url = "https://iliasse-e.github.io/IliasseELABOUYI_6_20082021";
 
 //imports photographers
 fetch(url+'/JSON/photographer.json')
