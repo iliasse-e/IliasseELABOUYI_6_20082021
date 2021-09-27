@@ -4,7 +4,7 @@
   * @param {Number} photographerIndex photographer id, highly suggested to call "getPhotographer()"
   */
 
-import { url } from "./main";
+import { url } from "./main.js";
 
 export function generateProfile(array, photographerIndex) {
 
