@@ -7,7 +7,6 @@ export function like(targetArray) {
   const likeCounts = document.querySelectorAll(".media__heading-like-counter");
   const currentmediaElements = document.querySelectorAll(".media > img, video");
   document.querySelectorAll(".media-like").forEach((likeBtn, index) => (likeBtn.onclick = function addLike() {
-    console.log(likeCounts)
         for (let e = 0; e < targetArray.length; e++) {
           if (currentmediaElements[index].textContent == targetArray[e].location) {
             if (targetArray[e].liked == true) {
@@ -40,4 +39,5 @@ export function totalLikeCounter(targetArray) {
     (a, b) => a + b,
     0
   );
+  document.querySelector("#total-likes > p").setAttribute("aria-label", "nombre total de like :" + document.querySelector("#total-likes > p").textContent)
 }

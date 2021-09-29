@@ -9,7 +9,6 @@ const url = "https://iliasse-e.github.io/IliasseELABOUYI_6_20082021";
 //imports photographers
 fetch(url+'/JSON/photographer.json')
 .then(function (response) {
-  console.log("Je suis la");
   if (response.ok) {
     response.json().then(data => {
         
@@ -28,7 +27,8 @@ fetch(url+'/JSON/photographer.json')
         let index = "error"
         for (let photographer = 0; photographer < photographers.length; photographer++) {
             if (urlParams == photographers[photographer].id) {
-                return index = photographer
+              index = photographer
+              return index
             }
         }
       }
@@ -51,7 +51,6 @@ fetch(url+'/JSON/photographer.json')
           tag.setAttribute("filter", element);
           tag.setAttribute("role", "link");
           tag.addEventListener("click", () => {
-            console.log(tag)
             window.location = url + "/index.html?filter=" + tag.getAttribute("filter")
           })
 
@@ -97,9 +96,9 @@ fetch(url+'/JSON/photographer.json')
         sortMedias(medias)
         // displays sorted medias
         medias.forEach(media => {media.displayMedia()})
-        like();
-        lightbox();
+        like(medias);
         tabindexAdder(".tab-element");
+        lightbox();
       })
 
       /**

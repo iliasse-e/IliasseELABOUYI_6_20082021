@@ -49,7 +49,6 @@
   static tagToggle(filters, photographers) {
 
     const homeUrl = new URL(window.location);
-    let urlParams = new URLSearchParams(homeUrl.href);
     let search = homeUrl.search;
 
     // sticks CSS attributes and filter profiles page
@@ -116,7 +115,7 @@
   static urlParamCheck() {
     const url = window.location;
     const searchParam = url.search.substring(8);
-    document.querySelector(".nav-tag-list > ." + searchParam).click()
+    document.querySelector(`.nav-tag-list > ."${searchParam}"`).click()
   }
 
 

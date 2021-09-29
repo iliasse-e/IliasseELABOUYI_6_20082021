@@ -15,7 +15,7 @@
 
     <header class="photographer_header">
         <div class="banner">
-            <a id="backhome" class="back-home-link tab-element" aria-label="Fish eye page d'accueil" href="index.html">
+            <a id="backhome" class="back-home-link tab-element" aria-label="Fish eye retour vers la page d'accueil" href="index.html">
                 <img src="./svg/logo.svg" aria-labelledby="backhome" role="button">
             </a>
         </div>
@@ -41,7 +41,8 @@
 
         </section>
 
-        <div class="form-container" id="form-contact" role="dialog" aria-hidden="true" aria-label="formulaire de contact">
+        <!-- Formulaire contact me (hidden) -->
+        <div class="form-container" id="form-contact" role="dialog" aria-label="formulaire de contact">
 
             <div class="close tab-element-modal" id="close-form" aria-label="fermer le formulaire de contact"></div>
             <form onsubmit="return false">
@@ -70,12 +71,13 @@
                   </div>
                 
           
-              <input id="form-btn" class="tab-element-modal" type="submit" onclick="validate()" role="button" aria-label="send message" value="Envoyer">
+              <input id="form-btn" class="tab-element-modal" type="submit" onclick="validate()" role="button" aria-label="envoyer le message" value="Envoyer">
           
             </form>
         </div>
         
-        <div class="form-container" id="form-sent" aria-label="" aria-hidden="true">
+        <!-- Confirmation form (hidden)-->
+        <div class="form-container" id="form-sent" role="dialog" aria-label="message de confirmation">
 
             <div class="close tab-element-confirmation-modal" id="close-confirmation"></div>
             <div id="confirmation-msg">
@@ -83,23 +85,24 @@
 
         </div> 
 
-        <figure class="lightbox" id="lightbox">
+        <!-- Lightbox (hidden)-->
+        <figure class="lightbox" aria-label="vue en grand écran" id="lightbox">
             
-            <button class="lightbox__prev" id="lightbox-prev"></button>
+            <button class="lightbox__prev" aria-label="image précedente" id="lightbox-prev"></button>
             <div class="lightbox__container" id="lightbox-container">
                 
             </div>
-            <button class="lightbox__close" id="lightbox-close"></button>
-            <button class="lightbox__next" id="lightbox-next"></button>
+            <button class="lightbox__close" aria-label="fermer la boite" id="lightbox-close"></button>
+            <button class="lightbox__next" aria-label="image suivante" id="lightbox-next"></button>
             
             <p class="lightbox__heading" id="lightbox-title"></p>
             <div id="blocker"></div>
         </figure>
 
         <aside id="total-likes">
-            <p aria-label="nombre total de like"></p>
-            <i class="fas fa-heart media-like" aria-hidden="true"></i>
-            <p id="photographer-price" aria-label="prix du photographe"></p>
+            <p aria-label="nombre total de like" class="tab-element"></p>
+            <i class="fas fa-heart media-like"></i>
+            <p id="photographer-price" class="tab-element" aria-label="prix du photographe"></p>
         </aside>
     </main>
 

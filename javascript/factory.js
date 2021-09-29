@@ -5,7 +5,7 @@
  */
 
 export class CreateMedia {
-  /** 
+  /**
    * @param {Number} id one number for each media
    * @param {Number} photographerId links to its photographer
    * @param {String} title name of the media
@@ -16,9 +16,9 @@ export class CreateMedia {
    * @param {String} location Name of the file to bring in (ex: "animal_zoo.jpg")
    * @param {String} type Defines if the media is an image or video (takes "image" or "video")
    * @param {String} alt only for images, alt text
-   * @param {Boolean} liked by default "false", it will be "true" when user is going to "like" the media
+   * @property {Boolean} liked by default "false", it will be "true" when user is going to "like" the media
    */
-  constructor(id, photographerId, title, tags, likes, date, price, location, type, alt, liked ) {
+  constructor(id, photographerId, title, tags, likes, date, price, location, type, alt) {
     this.id = id;
     this.photographerId = photographerId;
     this.title = title;
@@ -28,7 +28,7 @@ export class CreateMedia {
     this.price = price;
     this.location = location;
     this.type = type;
-    this.alt=alt;
+    this.alt = alt;
     this.liked = false;
   }
 
@@ -38,10 +38,10 @@ export class CreateMedia {
    * @returns {String} type of media (image or video)
    */
   static getType(target) {
-    if (target.hasOwnProperty("image")) {
+    if (Object.prototype.hasOwnProperty.call(target, "image")) {
       return "image"
     }
-    else if (target.hasOwnProperty("video")) {
+    else if (Object.prototype.hasOwnProperty.call(target, "video")) {
       return "video"
     }
   }

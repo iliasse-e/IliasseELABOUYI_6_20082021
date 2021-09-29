@@ -26,7 +26,17 @@
         
         @include desktop {
             flex-wrap: wrap;
+            .tag-list {
+                flex-wrap: wrap;
+            }
         }
+
+        @include laptop {
+            .tag-list {
+                flex-wrap: wrap;
+            }
+        }
+
         @include tablet {
             display: flex;
             position: absolute;

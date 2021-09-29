@@ -10,7 +10,7 @@ const closeBtn = document.getElementById("close-form");
 const submitBtn = document.getElementById("form-btn");
 const closeBtnConfirmation = document.getElementById("close-confirmation");
 const confirmationMsgContainer = document.getElementById("confirmation-msg");
-const page = document.querySelector("body");
+let prevActiveElement;
 
 // display photographer name in form title
 function displayTitle() {
@@ -43,31 +43,21 @@ const formFields = [
   },
 ];
 
-// toogle aria-hidden 
-function toogleAriaHidden(element) {
-  if (element.getAttribute("aria-hidden") == "true") {
-    element.setAttribute("aria-hidden", "false")
-  }
-  else if (element.getAttribute("aria-hidden") == "false") {
-    element.setAttribute("aria-hidden", "true")
-  }
-}
-
 // launch modal
 contactBtn.addEventListener("click", () => {
   displayTitle();
   contactForm.style.display = "block";
   tabindexAdder(".tab-element-modal");
-  toogleAriaHidden(contactForm);
-  toogleAriaHidden(page);
+  contactForm.setAttribute("tabindex", 1);
+  prevActiveElement = document.activeElement;
+  contactForm.focus()
 })
 
 // close modal
 function closeContactModal() {
   contactForm.style.display = "none";
   tabindexAdder(".tab-element");
-  toogleAriaHidden(contactForm);
-  toogleAriaHidden(page);
+  prevActiveElement.focus()
 }
 
 closeBtn.addEventListener("click", closeContactModal);
@@ -76,8 +66,6 @@ closeBtn.addEventListener("click", closeContactModal);
 function closeConfirmationModal() {
   confirmationModal.style.display = "none";
   tabindexAdder(".tab-element");
-  toogleAriaHidden(confirmationModal);
-  toogleAriaHidden(page);
 }
 
 closeBtnConfirmation.addEventListener("click", closeConfirmationModal);
@@ -125,10 +113,9 @@ function isValid() {
 function validate() {
   if (isValid()) {
     contactForm.style.display = "none";
-    toogleAriaHidden(contactForm);
+    
     confirmationModal.style.display = "block";
     tabindexAdder(".tab-element-confirmation-modal");
-    toogleAriaHidden(confirmationModal);
     form.reset();
     confirmationMsgContainer.innerHTML = validationMsg;
   } else {

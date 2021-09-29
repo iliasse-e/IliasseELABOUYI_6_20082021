@@ -130,6 +130,11 @@ html {
 #link-to-main:hover, #link-to-main:focus {
   opacity: 1;
 }
+@media (max-width: 769px) {
+  #link-to-main {
+    display: none;
+  }
+}
 
 .sort-by, .sort-by__option {
   background-color: #901C1C;
@@ -153,6 +158,12 @@ html {
   .title {
     top: 46px;
     right: 5%;
+    font-size: 2em;
+  }
+}
+@media (max-width: 1224px) {
+  .title {
+    font-size: 1.7em;
   }
 }
 @media (max-width: 769px) {
@@ -385,6 +396,14 @@ html {
 }
 @media (max-width: 1578px) {
   .main_header .header-tags, .photographer_header .header-tags {
+    flex-wrap: wrap;
+  }
+  .main_header .header-tags .tag-list, .photographer_header .header-tags .tag-list {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 1224px) {
+  .main_header .header-tags .tag-list, .photographer_header .header-tags .tag-list {
     flex-wrap: wrap;
   }
 }

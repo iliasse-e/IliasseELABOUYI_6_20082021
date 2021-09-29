@@ -4,7 +4,7 @@
   * @param {Number} photographerIndex photographer id, highly suggested to call "getPhotographer()"
   */
 
-const url = "https://iliasse-e.github.io/IliasseELABOUYI_6_20082021";
+const url = "http://127.0.0.1:5501/";
 
 export function generateProfile(array, photographerIndex) {
 
@@ -40,7 +40,6 @@ export function generateProfile(array, photographerIndex) {
     const headingnode = document.createTextNode(array[photographerIndex].name);
     const taglinenode = document.createTextNode(array[photographerIndex].tagline);
     const pricenode = document.createTextNode(array[photographerIndex].price + "€ /jour")
-    const tagsgnode = document.createTextNode(array[photographerIndex].tags)
   
     // joins the textNodes to HTML element
     heading.appendChild(headingnode);
@@ -63,7 +62,7 @@ export function generateProfile(array, photographerIndex) {
     // sets attributes
     container.classList.add("photographer-profile");
     image.setAttribute("src", "images/Photographers ID Photos/" + array[photographerIndex].portrait);
-    image.setAttribute("alt", "photo de profile de " + array[photographerIndex].name + " - Page photographe");
+    image.setAttribute("alt", "lien vers la page photographe de" + array[photographerIndex].name);
     image.setAttribute("role", "link");
     image.classList.add("photographer-profile__image");
     heading.classList.add("photographer-profile__heading");
@@ -74,7 +73,7 @@ export function generateProfile(array, photographerIndex) {
     tags.setAttribute("photographer", array[photographerIndex].name);
     link.classList.add("tab-element", "link");
     link.addEventListener("click", () => {
-      window.location = url + "/photographer.html"+"?="+array[photographerIndex].id;
+      window.location = url + "photographer.html"+"?="+array[photographerIndex].id;
     })
   
     array[photographerIndex].tags.forEach(tag => {
@@ -83,26 +82,17 @@ export function generateProfile(array, photographerIndex) {
 
     // sets aria and role attributes
     container.setAttribute("aria-label", "profil du photographe");
-    image.setAttribute("role", "heading");
-    heading.setAttribute("role", "heading");
-    heading.setAttribute("aria-level", "1");
-    adress.setAttribute("role", "heading");
-    adress.setAttribute("aria-level", "2");
+    heading.setAttribute("aria-hidden", "true")
     adress.setAttribute("aria-label", "ville du photographe :" + array[photographerIndex].city)
-    tagline.setAttribute("role", "heading");
-    tagline.setAttribute("aria-level", "3");
     tagline.setAttribute("aria-label", "citation du photographe :" + array[photographerIndex].tagline)
-    price.setAttribute("role", "heading");
-    price.setAttribute("aria-level", "4");
     price.setAttribute("aria-label", "prix du photographe " + array[photographerIndex].price + "euros par jour")
-    tags.setAttribute("role", "heading");
-    tags.setAttribute("aria-level", "5");
     tags.setAttribute("aria-label", "thèmes du photographe");
 
     
     // add price if page allows it
     if (document.getElementById("photographer-price")) {
-      document.getElementById("photographer-price").innerHTML = array[photographerIndex].price + "€/jour"
+      document.getElementById("photographer-price").innerHTML = array[photographerIndex].price + "€/jour";
+      document.getElementById("photographer-price").setAttribute("aria-label", "prix du photographe :" + array[photographerIndex].price + "€ par jour")
     }
     
   }

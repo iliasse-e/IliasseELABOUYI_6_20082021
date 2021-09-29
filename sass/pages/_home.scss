@@ -12,6 +12,11 @@
     @include desktop {
         top: 46px;
         right: 5%;
+        font-size: 2em;
+    }
+
+    @include laptop {
+        font-size: 1.7em;
     }
     
     @include tablet {

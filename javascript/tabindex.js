@@ -11,30 +11,33 @@ export function tabindexAdder(attribute) {
   const links = document.querySelectorAll("a, button, select, link, input, textarea, [tabindex]");
   for( let i = 0, j =  links.length; i < j; i++ ) {
       links[i].setAttribute("tabindex", "-1");
-  };
-  console.log("tabindex")
+  }
 
   /* sets tabindex */
   let tabElements = document.querySelectorAll(attribute);
   tabElements.forEach((element, index) => {
     element.setAttribute("tabindex", index + 1);
     element.removeAttribute("aria-hidden");
-    console.log("aria-hidden")
   });
 
   // recycles focus on Tab keyboard
   resetTabFocus();
 
   /* keyboard Enter listener */
-  tabElements.forEach((element) =>  element.addEventListener("keyup", function(event) {
+  tabElements.forEach((element) =>  element.addEventListener("keydown", function(event) {
     // Number 13 is the "Enter" key on the keyboard
+    console.log(event)
     if (event.keyCode === 13) {
+
+      
       // Cancel the default action, if needed
       event.preventDefault();
-      // Trigger the button element with a click
+      event.stopPropagation();
       element.click();
+      event.stopImmediatePropagation()
+      // Trigger the button element with a click
     }
-  })) 
+  }, true)) 
 }
 
 /**
@@ -63,7 +66,6 @@ function resetTabFocus() {
     if (event.shiftKey && event.keyCode === 9) {
       event.preventDefault();
       activeElement[activeElement.length-1].focus();
-      console.log(activeElement[activeElement.length-1]);
     }
   })
   

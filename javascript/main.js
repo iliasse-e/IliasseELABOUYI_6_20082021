@@ -7,7 +7,6 @@ const url = "https://iliasse-e.github.io/IliasseELABOUYI_6_20082021";
 // import (photographer profil) json data
 fetch(url+'/JSON/photographer.json')
 .then(function (response) {
-  console.log("Je suis la");
   if (response.ok) {
     response.json().then(data => {
       let photographers = data["photographers"];
@@ -20,11 +19,11 @@ fetch(url+'/JSON/photographer.json')
                 filters.push(new Filter(photographers[photographer].tags[tag], [], "tag tab-element " + photographers[photographer].tags[tag]))
             }
         }
-      };
+      }
 
       // fill each filter Objects with its photographers
       filters.forEach((filter) => {
-        photographers.forEach((photographer, index) => {
+        photographers.forEach((photographer) => {
           if (photographer.tags.includes(filter.name)) {
             filter.photographers.push(photographer.name)
           }
@@ -39,7 +38,6 @@ fetch(url+'/JSON/photographer.json')
 
       // DOM Elements (navigation tags and photographer profile cards)
       let navTags =  document.querySelectorAll(".nav-tag-list > .tag");
-      let profileTags = document.querySelectorAll(".profile-tag-list > .tag");
       const photographerProfiles = document.querySelectorAll(".photographer-profile");
 
       // displays filter tags under photographer profile
@@ -56,8 +54,6 @@ fetch(url+'/JSON/photographer.json')
 
       // toggles filter tag clicked on photographer.html
       Filter.urlParamCheck();
-
-      
 
 
     })
