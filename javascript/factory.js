@@ -97,7 +97,7 @@ export class CreateMedia {
     likeCounter.classList.add("media__heading-like-counter");
     likeContainer.classList.add("tab-element", "media-like");
     like.classList.add("fas", "fa-heart");
-    likeContainer.setAttribute("aria-label", "like");
+    likeContainer.setAttribute("aria-label", "ajouter un like à la photo");
     likeContainer.setAttribute("role", "button");
 
     //sets aria attributes

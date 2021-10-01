@@ -14,10 +14,6 @@ import { tabindexAdder } from "./tabindex.js";
    const mediaContainer = document.getElementById("lightbox-container");
    const mediasDOM = document.querySelectorAll(".media > img, video");
    let prevActiveElement;
-
-   function init() {
-
-   }
  
    // launch lightbox
    mediasDOM.forEach((element, index) =>  element.addEventListener("click", function displayLightbox() {
