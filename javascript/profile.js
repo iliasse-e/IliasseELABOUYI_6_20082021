@@ -4,7 +4,7 @@
   * @param {Number} photographerIndex photographer id, highly suggested to call "getPhotographer()"
   */
 
-const url = "http://127.0.0.1:5501/";
+const url = "https://iliasse-e.github.io/IliasseELABOUYI_6_20082021";
 
 export function generateProfile(array, photographerIndex) {
 

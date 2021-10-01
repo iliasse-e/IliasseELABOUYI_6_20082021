@@ -86,6 +86,9 @@ fetch(url+'/JSON/photographer.json')
       }
 
       createmedias()
+
+      // disable profile photographer focus
+      document.querySelector(".link").className = "link";
       
       // adds sort function on <select>
       document.getElementById("sort-by").addEventListener("change", () => {

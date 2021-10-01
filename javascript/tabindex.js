@@ -31,10 +31,11 @@ export function tabindexAdder(attribute) {
 
       
       // Cancel the default action, if needed
-      event.preventDefault();
-      event.stopPropagation();
       element.click();
-      event.stopImmediatePropagation()
+      if (window.location.href.includes("photographer")) {
+        console.log("c'est bon")
+        event.stopImmediatePropagation()
+      }
       // Trigger the button element with a click
     }
   }, true)) 

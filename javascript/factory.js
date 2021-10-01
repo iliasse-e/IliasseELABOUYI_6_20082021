@@ -91,6 +91,7 @@ export class CreateMedia {
     media.setAttribute("src", `images/${this.photographerId}/${this.location}`);
     media.classList.add("tab-element");
     if (this.type == "image") { media.setAttribute("alt", this.alt);}
+    if (this.type == "video") { media.setAttribute("aria-label", this.alt);}
     heading.classList.add("media__heading");
     title.classList.add("media__heading-title");
     likeCounter.classList.add("media__heading-like-counter");
