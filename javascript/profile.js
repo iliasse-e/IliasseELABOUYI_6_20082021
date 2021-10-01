@@ -73,7 +73,7 @@ export function generateProfile(array, photographerIndex) {
     tags.setAttribute("photographer", array[photographerIndex].name);
     link.classList.add("tab-element", "link");
     link.addEventListener("click", () => {
-      window.location = url + "photographer.html"+"?="+array[photographerIndex].id;
+      window.location = url + "/photographer.html"+"?="+array[photographerIndex].id;
     })
   
     array[photographerIndex].tags.forEach(tag => {

@@ -36,7 +36,7 @@
             transition: 200ms;
         
             &:hover { 
-                scale: 1.1;
+                transform: scale(1.1);
                 transition: 200ms;
             }
             &:active {
@@ -49,12 +49,12 @@
 
 @keyframes like {
     0% {
-        scale: 1.1;
+        transform: scale(1.1);
     }
     50% {
-        scale: 1.5 ;
+        transform: scale(1.5);
     }
     100% {
-        scale: 1;
+        transform: scale(1.0);
     }
 }

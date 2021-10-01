@@ -95,7 +95,6 @@ html {
 .contact:hover, .form-container #form-btn:hover, .form-container #ok-btn:hover, #link-to-main:hover, .contact:focus, .form-container #form-btn:focus, .form-container #ok-btn:focus, #link-to-main:focus {
   background-color: #DB8876;
   transition: 500ms;
-  transform: scale(102%);
   filter: brightness(120%);
   cursor: pointer;
   color: black;
@@ -535,7 +534,7 @@ html {
   transition: 200ms;
 }
 .media__heading i:hover {
-  scale: 1.1;
+  transform: scale(1.1);
   transition: 200ms;
 }
 .media__heading i:active {
@@ -545,13 +544,13 @@ html {
 
 @keyframes like {
   0% {
-    scale: 1.1;
+    transform: scale(1.1);
   }
   50% {
-    scale: 1.5;
+    transform: scale(1.5);
   }
   100% {
-    scale: 1;
+    transform: scale(1);
   }
 }
 .form-container {
