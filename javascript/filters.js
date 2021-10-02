@@ -115,7 +115,7 @@
   static urlParamCheck() {
     const url = window.location;
     const searchParam = url.search.substring(8);
-    document.querySelector(`.nav-tag-list > ."${searchParam}"`).click()
+    document.querySelector(".nav-tag-list > ." + searchParam).click()
   }
 
 
